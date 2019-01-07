@@ -1,3 +1,9 @@
+### Version 0.6.0 - 2019-01-07
+- Created .before() (Zenoo)
+- Created .blur() (Zenoo)
+- Created .children() (Zenoo)
+- Created .clone() (Zenoo)
+
 ### Version 0.5.0 - 2019-01-07
 - Created .append() (Zenoo)
 - Created .appendTo() (Zenoo)
