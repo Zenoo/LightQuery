@@ -172,6 +172,15 @@ class LightQuery{
 
 		return this;
 	}
+
+	/**
+	 * Forces the focus out of each element
+	 */
+	blur(){
+		this._elements.forEach(element => {
+			element.blur();
+		});
+	}
 }
 
 const $ = parameter => new LightQuery(parameter);
