@@ -66,7 +66,7 @@ class LightQuery{
 	/**
 	 * Add elements to the current LightQuery elements
 	 * @param {Element|NodeList|Array|String} parameter Element(s) to add
-	 * @param {Element}                 context   Context of the potential query
+	 * @param {Element}                       context   Context of the potential query
 	 */
 	add(parameter, context){
 		if(parameter instanceof LightQuery){
@@ -80,51 +80,30 @@ class LightQuery{
 
 	/**
 	 * Add class(es) to each element
-	 * @param {String|Function} parameter Space separated classes to add, or a Function that returns a String for each element
+	 * @param {String|Function} parameter Space separated classes to add
 	 */
 	addClass(parameter){
-		// Element-specific function
-		if(parameter instanceof Function){
-			this._elements.forEach((element, index) => {
-				element.classList.add(...Reflect.apply(parameter, element, [index]).split(/\s+/));
-			});
-		// Basic usage
-		}else{
-			this._elements.forEach(element => {
-				element.classList.add(...parameter.split(/\s+/));
-			});
-		}
+		this._elements.forEach(element => {
+			element.classList.add(...parameter.split(/\s+/));
+		});
 
 		return this;
 	}
 
 	/**
 	 * Insert content after each element
-	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]|Function[]} elements Elements to be inserted
+	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be inserted
 	 */
 	after(...elements){
-		this._elements.forEach((element, index) => {
-			// Element-specific function
-			if(elements[0] instanceof Function){
-				const newElements = LightQuery._STD(Reflect.apply(elements[0], element, [index]));
-
+		this._elements.forEach(element => {
+			elements.forEach(newElement => {
 				let previousElement = element;
 
-				newElements.forEach(newElement => {
-					previousElement.parentNode.insertBefore(newElement, previousElement.nextSibling);
-					previousElement = newElement;
+				LightQuery._STD(newElement).forEach(newSingleElement => {
+					previousElement.parentNode.insertBefore(newSingleElement, previousElement.nextSibling);
+					previousElement = newSingleElement;
 				});
-			// Basic usage
-			}else{
-				elements.forEach(newElement => {
-					let previousElement = element;
-
-					LightQuery._STD(newElement).forEach(newSingleElement => {
-						previousElement.parentNode.insertBefore(newSingleElement, previousElement.nextSibling);
-						previousElement = newSingleElement;
-					});
-				});
-			}
+			});
 		});
 
 		return this;
@@ -132,25 +111,13 @@ class LightQuery{
 
 	/**
 	 * Append content to the end of each element
-	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]|Function[]} elements Elements to be appended
+	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be appended
 	 */
 	append(...elements){
-		this._elements.forEach((element, index) => {
-			// Element-specific function
-			if(elements[0] instanceof Function){
-				const newElements = LightQuery._STD(Reflect.apply(elements[0], element, [index]));
-
-				newElements.forEach(newElement => {
-					element.appendChild(newElement);
-				});
-			// Basic usage
-			}else{
-				elements.forEach(newElement => {
-					LightQuery._STD(newElement).forEach(newSingleElement => {
-						element.appendChild(newSingleElement);
-					});
-				});
-			}
+		this._elements.forEach(element => {
+			elements.forEach(newElement => {
+				element.append(...LightQuery._STD(newElement));
+			});
 		});
 
 		return this;
@@ -158,13 +125,30 @@ class LightQuery{
 
 	/**
 	 * Append each element to the end of the targets
-	 * @param {Element|NodeList|Array|String|LightQuery|} targets Elements to be appended to
+	 * @param {Element|NodeList|Array|String|LightQuery} targets Elements to be appended to
 	 */
 	appendTo(targets){
 		LightQuery._STD(targets).forEach(target => {
-			this._elements.forEach(element => {
-				target.appendChild(element);
-			});
+			target.append(...this._elements);
+		});
+
+		return this;
+	}
+
+	/**
+	 * Set/Get an attribute for each element
+	 * @param {String} name 
+	 * @param {String|Number|null} value 
+	 */
+	attr(name, value){
+		// Getter
+		if(typeof value == 'undefined'){
+			return this._elements[0].getAttribute(name);
+		}
+
+		// Setter
+		this._elements.forEach(element => {
+			element.setAttribute(name, value);
 		});
 
 		return this;

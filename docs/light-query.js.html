@@ -36,15 +36,34 @@ class LightQuery{
 		 */
 		this._elements = [];
 
+		if(parameter instanceof Function){
+			window.addEventListener('load', () => {
+				Reflect.apply(parameter, null, []);
+			});
+		}else{
+			this._elements.push(...LightQuery._STD(parameter, context));
+		}
+	}
+
+	/**
+	 * Standardizes any input to an Element array
+	 * @param {Element|NodeList|Array|String} parameter Element to standardize
+	 * @param {Element} context                         Potential query context
+	 * @private
+	 */
+	static _STD(parameter, context){
+		const result = [];
+
 		switch (parameter.constructor){
 			// Element passed as a parameter
 			case Element:
-				this._elements.push(parameter);
+				result.push(parameter);
 
 				break;
-			// NodeList passed as a parameter
+			// Array-like passed as a parameter
 			case NodeList:
-				this._elements.push(...Array.from(parameter));
+			case Array:
+				result.push(...Array.from(parameter));
 
 				break;
 			// String passed as a parameter
@@ -54,7 +73,7 @@ class LightQuery{
 					// Check the context before querying globally
 					const elements = (context || document).querySelectorAll(parameter);
 
-					this._elements.push(...Array.from(elements));
+					result.push(...Array.from(elements));
 				// Invalid selector
 				} catch (error) {
 					const template = document.createElement('template');
@@ -62,32 +81,26 @@ class LightQuery{
 					// Try to create a DOM from the string
 					template.innerHTML = parameter;
 
-					this._elements.push(...Array.from(template.content.childNodes));
+					result.push(...Array.from(template.content.childNodes));
 				}
 
 				break;
-			// Allow for $(function(){ ... })
-			case Function:
-				window.addEventListener('load', () => {
-					Reflect.apply(parameter, null, []);
-				});
-
-				break;
 			default:
-				console.warn('LightQuery: Invalid parameter.');
 		}
+
+		return result;
 	}
 
 	/**
 	 * Add elements to the current LightQuery elements
-	 * @param {Element|NodeList|String} parameter Element(s) to add
-	 * @param {Element}                 context   Context of the potential query
+	 * @param {Element|NodeList|Array|String} parameter Element(s) to add
+	 * @param {Element}                       context   Context of the potential query
 	 */
 	add(parameter, context){
 		if(parameter instanceof LightQuery){
 			this._elements.push(...parameter._elements);
 		}else{
-			this._elements.push(...new LightQuery(parameter, context)._elements);
+			this._elements.push(...LightQuery._STD(parameter, context));
 		}
 
 		return this;
@@ -95,20 +108,76 @@ class LightQuery{
 
 	/**
 	 * Add class(es) to each element
-	 * @param {String|Function} parameter Space separated classes to add, or a Function that returns a String for each element
+	 * @param {String|Function} parameter Space separated classes to add
 	 */
 	addClass(parameter){
-		// Element-specific function
-		if(parameter instanceof Function){
-			this._elements.forEach((element, index) => {
-				element.classList.add(...Reflect.apply(parameter, element, [index]).split(/\s+/));
+		this._elements.forEach(element => {
+			element.classList.add(...parameter.split(/\s+/));
+		});
+
+		return this;
+	}
+
+	/**
+	 * Insert content after each element
+	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be inserted
+	 */
+	after(...elements){
+		this._elements.forEach(element => {
+			elements.forEach(newElement => {
+				let previousElement = element;
+
+				LightQuery._STD(newElement).forEach(newSingleElement => {
+					previousElement.parentNode.insertBefore(newSingleElement, previousElement.nextSibling);
+					previousElement = newSingleElement;
+				});
 			});
-		// Basic usage
-		}else{
-			this._elements.forEach(element => {
-				element.classList.add(...parameter.split(/\s+/));
+		});
+
+		return this;
+	}
+
+	/**
+	 * Append content to the end of each element
+	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be appended
+	 */
+	append(...elements){
+		this._elements.forEach(element => {
+			elements.forEach(newElement => {
+				element.append(...LightQuery._STD(newElement));
 			});
+		});
+
+		return this;
+	}
+
+	/**
+	 * Append each element to the end of the targets
+	 * @param {Element|NodeList|Array|String|LightQuery} targets Elements to be appended to
+	 */
+	appendTo(targets){
+		LightQuery._STD(targets).forEach(target => {
+			target.append(...this._elements);
+		});
+
+		return this;
+	}
+
+	/**
+	 * Set/Get an attribute for each element
+	 * @param {String} name 
+	 * @param {String|Number|null} value 
+	 */
+	attr(name, value){
+		// Getter
+		if(typeof value == 'undefined'){
+			return this._elements[0].getAttribute(name);
 		}
+
+		// Setter
+		this._elements.forEach(element => {
+			element.setAttribute(name, value);
+		});
 
 		return this;
 	}
@@ -130,7 +199,7 @@ const $ = parameter => new LightQuery(parameter);</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 07 2019 11:47:11 GMT+0100 (Romance Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 07 2019 14:10:34 GMT+0100 (Romance Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
