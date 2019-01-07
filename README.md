@@ -19,19 +19,23 @@ Simply import `light-query.min.js` into your HTML.
   * `.append()`
   * `.appendTo()`
   * `.before()`
+  * `.blur()`
+  * `.children()`
+  * `.clone()`
 
 
-* **TODO**
+* **Not included**
 
-  * `.addBack()`
+  * `.addBack()` *Use more appropriate selectors instead*
   * `.ajaxComplete()`
   * `.ajaxError()`
   * `.ajaxSend()`
   * `.ajaxStart()`
   * `.ajaxStop()`
   * `.ajaxSuccess()`
-  * `.andSelf()`
-  * `.animate()`
+  * `.andSelf()` *Use more appropriate selectors instead*
+  * `.animate()` *Use CSS3 animations instead*
+  * `.change()` *Use `.on('change')` instead*
 
 ## Authors
 

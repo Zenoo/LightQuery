@@ -1,8 +1,8 @@
 /* exported $ */
-class LightQuery{
+class _${
 	/**
 	 * 
-	 * @param {Element|NodeList|Array|String|Function} parameter The parameter to initialize the LightQuery object with
+	 * @param {Element|NodeList|Array|String|Function} parameter The parameter to initialize the _$ object with
 	 * @param {Element} [context] 
 	 */
 	constructor(parameter, context){
@@ -18,7 +18,7 @@ class LightQuery{
 				Reflect.apply(parameter, null, []);
 			});
 		}else{
-			this.items.push(...LightQuery._STD(parameter, context));
+			this.items.push(..._$._STD(parameter, context));
 		}
 	}
 
@@ -69,16 +69,16 @@ class LightQuery{
 	}
 
 	/**
-	 * Add elements to the current LightQuery elements
+	 * Add elements to the current _$ elements
 	 * @param {Element|NodeList|Array|String} parameter Element(s) to add
 	 * @param {Element}                       [context] Context of the potential query
-	 * @returns {LightQuery} The current object
+	 * @returns {_$} The current object
 	 */
 	add(parameter, context){
-		if(parameter instanceof LightQuery){
+		if(parameter instanceof _$){
 			this.items.push(...parameter.items);
 		}else{
-			this.items.push(...LightQuery._STD(parameter, context));
+			this.items.push(..._$._STD(parameter, context));
 		}
 
 		return this;
@@ -87,7 +87,7 @@ class LightQuery{
 	/**
 	 * Add class(es) to each element
 	 * @param {String|Function} parameter Space separated classes to add
-	 * @returns {LightQuery} The current object
+	 * @returns {_$} The current object
 	 */
 	addClass(parameter){
 		this.items.forEach(item => {
@@ -99,15 +99,15 @@ class LightQuery{
 
 	/**
 	 * Insert content after each element
-	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be inserted
-	 * @returns {LightQuery} The current object
+	 * @param {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be inserted
+	 * @returns {_$} The current object
 	 */
 	after(...elements){
 		this.items.forEach(item => {
 			elements.forEach(newElement => {
 				let previousElement = item;
 
-				LightQuery._STD(newElement).forEach(newSingleElement => {
+				_$._STD(newElement).forEach(newSingleElement => {
 					previousElement.insertAdjacentElement('afterend', newSingleElement);
 					previousElement = newSingleElement;
 				});
@@ -119,13 +119,13 @@ class LightQuery{
 
 	/**
 	 * Append content to the end of each element
-	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be appended
-	 * @returns {LightQuery} The current object
+	 * @param {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be appended
+	 * @returns {_$} The current object
 	 */
 	append(...elements){
 		this.items.forEach(item => {
 			elements.forEach(newElement => {
-				item.append(...LightQuery._STD(newElement));
+				item.append(..._$._STD(newElement));
 			});
 		});
 
@@ -134,11 +134,11 @@ class LightQuery{
 
 	/**
 	 * Append each element to the end of the targets
-	 * @param {Element|NodeList|Array|String|LightQuery} targets Elements to be appended to
-	 * @returns {LightQuery} The current object
+	 * @param {Element|NodeList|Array|String|_$} targets Elements to be appended to
+	 * @returns {_$} The current object
 	 */
 	appendTo(targets){
-		LightQuery._STD(targets).forEach(target => {
+		_$._STD(targets).forEach(target => {
 			target.append(...this.items);
 		});
 
@@ -149,7 +149,7 @@ class LightQuery{
 	 * Set/Get an attribute for each element
 	 * @param {String}              name    The attribute name
 	 * @param {String|Number|null}  [value] The attribute value
-	 * @returns {LightQuery|String} The current object or the value of the attribute
+	 * @returns {_$|String} The current object or the value of the attribute
 	 */
 	attr(name, value){
 		// Getter
@@ -167,8 +167,8 @@ class LightQuery{
 
 	/**
 	 * Insert content before each element
-	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be inserted
-	 * @returns {LightQuery} The current object
+	 * @param {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be inserted
+	 * @returns {_$} The current object
 	 */
 	before(...elements){
 		// For each current element
@@ -176,7 +176,7 @@ class LightQuery{
 			// For each new element
 			elements.forEach(newElement => {
 				// For each single node from the new element
-				LightQuery._STD(newElement).forEach(newSingleElement => {
+				_$._STD(newElement).forEach(newSingleElement => {
 					item.insertAdjacentElement('beforebegin', newSingleElement);
 				});
 			});
@@ -187,7 +187,7 @@ class LightQuery{
 
 	/**
 	 * Force the focus out of each element
-	 * @returns {LightQuery} The current object
+	 * @returns {_$} The current object
 	 */
 	blur(){
 		this.items.forEach(item => {
@@ -200,7 +200,7 @@ class LightQuery{
 	/**
 	 * Get the children of each element
 	 * @param {String}       [selector] An optional filter
-	 * @returns {LightQuery} The current object's children
+	 * @returns {_$} The current object's children
 	 */
 	children(selector){
 		const children = [];
@@ -211,8 +211,17 @@ class LightQuery{
 			});
 		});
 
-		return new LightQuery(children);
+		return new _$(children);
+	}
+
+	/**
+	 * Clone each element
+	 * @param {Boolean}      [deep=true] Deep clone the elements ?
+	 * @returns {_$} A clone from each current element
+	 */
+	clone(deep){
+		return new _$(this.items.map(item => item.cloneNode(!!deep)));
 	}
 }
 
-const $ = parameter => new LightQuery(parameter);
+const $ = parameter => new _$(parameter);
