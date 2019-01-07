@@ -242,6 +242,34 @@ class _${
 			return acc;
 		}, []);
 	}
+
+	/**
+	 * Set/Get a CSS property
+	 * @param {String|Object} parameter The CSS property name or an object containing every CSS properties to be changed
+	 * @param {String}        [value]   The CSS property value
+	 * @returns {_$} The current object
+	 */
+	css(parameter, value){
+		// Simple String way
+		if(typeof parameter == 'string'){
+			if(value){
+				this.items.forEach(item => {
+					item.style[parameter] = value;
+				});
+			}else{
+				return this.items[0].style[parameter];
+			}
+		// Object way
+		}else{
+			this.items.forEach(item => {
+				Object.entries(parameter).forEach(([key, val]) => {
+					item.style[key] = val;
+				});
+			});
+		}
+		
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
