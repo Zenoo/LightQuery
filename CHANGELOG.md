@@ -1,3 +1,7 @@
+### Version 0.7.0 - 2019-01-07
+- Updated JSDoc (origin/master) (Zenoo)
+- Created .closest() (Zenoo)
+
 ### Version 0.6.0 - 2019-01-07
 - Created .before() (Zenoo)
 - Created .blur() (Zenoo)
