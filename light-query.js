@@ -217,10 +217,18 @@ class _${
 	/**
 	 * Clone each element
 	 * @param {Boolean}      [deep=true] Deep clone the elements ?
-	 * @returns {_$} A clone from each current element
 	 */
 	clone(deep){
 		return new _$(this.items.map(item => item.cloneNode(!!deep)));
+	}
+
+	/**
+	 * Get the closest (self-included) parent matching the selector for each element
+	 * @param {String} selector The selector
+	 * @returns {_$} A new LightQuery object
+	 */
+	closest(selector){
+		return new _$(this.items.map(item => item.closest(selector)).filter(item => item));
 	}
 }
 

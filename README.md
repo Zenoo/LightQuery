@@ -22,6 +22,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.blur()`
   * `.children()`
   * `.clone()`
+  * `.closest()`
 
 
 * **Not included**
@@ -36,6 +37,8 @@ Simply import `light-query.min.js` into your HTML.
   * `.andSelf()` *Use more appropriate selectors instead*
   * `.animate()` *Use CSS3 animations instead*
   * `.change()` *Use `.on('change')` instead*
+  * `.clearQueue()` *There is no queue*
+  * `.click()` *Use `.on('click')` instead*
 
 ## Authors
 
