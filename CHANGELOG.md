@@ -1,3 +1,6 @@
+### Version 0.8.0 - 2019-01-07
+- Created .contents() (Zenoo)
+
 ### Version 0.7.0 - 2019-01-07
 - Updated JSDoc (origin/master) (Zenoo)
 - Created .closest() (Zenoo)
