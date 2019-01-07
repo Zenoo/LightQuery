@@ -270,6 +270,18 @@ class _${
 		
 		return this;
 	}
+
+	/**
+	 * Remove each element from the DOM, to be reused later
+	 * @returns {_$} The current object
+	 */
+	detach(){
+		this.items.forEach(item => {
+			item.parentElement.removeChild(item);
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);

@@ -23,6 +23,8 @@ Simply import `light-query.min.js` into your HTML.
   * `.children()`
   * `.clone()`
   * `.closest()`
+  * `.css()`
+  * `.detach()`
 
 
 * **Not included**
@@ -39,6 +41,11 @@ Simply import `light-query.min.js` into your HTML.
   * `.change()` *Use `.on('change')` instead*
   * `.clearQueue()` *There is no queue*
   * `.click()` *Use `.on('click')` instead*
+  * `.data()` *Use `.attr('data-...')` instead*
+  * `.dblclick()` *Use `.on('dblclick')` instead*
+  * `.delay()` *Use `setTimeout()` or CSS3 animations instead*
+  * `.delegate()` *Use `.on()` instead*
+  * `.dequeue()` *There is no queue*
 
 ## Authors
 
