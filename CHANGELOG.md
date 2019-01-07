@@ -1,3 +1,6 @@
+### Version 0.4.0 - 2019-01-07
+- Created .after() (Zenoo)
+
 ### Version 0.3.0 - 2019-01-07
 - Created .addClass() (Zenoo)
 
