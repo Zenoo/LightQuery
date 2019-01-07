@@ -230,6 +230,18 @@ class _${
 	closest(selector){
 		return new _$(this.items.map(item => item.closest(selector)).filter(item => item));
 	}
+
+	/**
+	 * Get the children of each element (including text nodes)
+	 * @returns {Element[]} The child nodes
+	 */
+	contents(){
+		return this.items.reduce((acc, item) => {
+			acc.push(...item.childNodes);
+
+			return acc;
+		}, []);
+	}
 }
 
 const $ = parameter => new _$(parameter);
