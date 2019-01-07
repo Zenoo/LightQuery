@@ -100,7 +100,7 @@ class LightQuery{
 				let previousElement = element;
 
 				LightQuery._STD(newElement).forEach(newSingleElement => {
-					previousElement.parentNode.insertBefore(newSingleElement, previousElement.nextSibling);
+					previousElement.insertAdjacentElement('afterend', newSingleElement);
 					previousElement = newSingleElement;
 				});
 			});
@@ -149,6 +149,25 @@ class LightQuery{
 		// Setter
 		this._elements.forEach(element => {
 			element.setAttribute(name, value);
+		});
+
+		return this;
+	}
+
+	/**
+	 * Insert content before each element
+	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be inserted
+	 */
+	before(...elements){
+		// For each current element
+		this._elements.forEach(element => {
+			// For each new element
+			elements.forEach(newElement => {
+				// For each single node from the new element
+				LightQuery._STD(newElement).forEach(newSingleElement => {
+					element.insertAdjacentElement('beforebegin', newSingleElement);
+				});
+			});
 		});
 
 		return this;
