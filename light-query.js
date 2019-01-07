@@ -1,6 +1,6 @@
 /* exported $ */
 class LightQuery{
-	constructor(parameter){
+	constructor(parameter, context){
 		/**
 		 * Elements holder
 		 * @type {Element[]}
@@ -23,7 +23,8 @@ class LightQuery{
 			case String:
 				// Valid selector
 				try {
-					const elements = document.querySelectorAll(parameter);
+					// Check the context before querying globally
+					const elements = (context || document).querySelectorAll(parameter);
 
 					this._elements.push(...Array.from(elements));
 				// Invalid selector
@@ -47,6 +48,21 @@ class LightQuery{
 			default:
 				console.warn('LightQuery: Invalid parameter.');
 		}
+	}
+
+	/**
+	 * Add elements to the current LightQuery elements
+	 * @param {Element|NodeList|String} parameter Element(s) to add
+	 * @param {Element}                 context   Context of the potential query
+	 */
+	add(parameter, context){
+		if(parameter instanceof LightQuery){
+			this._elements.push(...parameter._elements);
+		}else{
+			this._elements.push(...new LightQuery(parameter, context)._elements);
+		}
+
+		return this;
 	}
 }
 
