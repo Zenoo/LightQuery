@@ -8,15 +8,34 @@ class LightQuery{
 		 */
 		this._elements = [];
 
+		if(parameter instanceof Function){
+			window.addEventListener('load', () => {
+				Reflect.apply(parameter, null, []);
+			});
+		}else{
+			this._elements.push(...LightQuery._STD(parameter, context));
+		}
+	}
+
+	/**
+	 * Standardizes any input to an Element array
+	 * @param {Element|NodeList|Array|String} parameter Element to standardize
+	 * @param {Element} context                         Potential query context
+	 * @private
+	 */
+	static _STD(parameter, context){
+		const result = [];
+
 		switch (parameter.constructor){
 			// Element passed as a parameter
 			case Element:
-				this._elements.push(parameter);
+				result.push(parameter);
 
 				break;
-			// NodeList passed as a parameter
+			// Array-like passed as a parameter
 			case NodeList:
-				this._elements.push(...Array.from(parameter));
+			case Array:
+				result.push(...Array.from(parameter));
 
 				break;
 			// String passed as a parameter
@@ -26,7 +45,7 @@ class LightQuery{
 					// Check the context before querying globally
 					const elements = (context || document).querySelectorAll(parameter);
 
-					this._elements.push(...Array.from(elements));
+					result.push(...Array.from(elements));
 				// Invalid selector
 				} catch (error) {
 					const template = document.createElement('template');
@@ -34,32 +53,26 @@ class LightQuery{
 					// Try to create a DOM from the string
 					template.innerHTML = parameter;
 
-					this._elements.push(...Array.from(template.content.childNodes));
+					result.push(...Array.from(template.content.childNodes));
 				}
 
 				break;
-			// Allow for $(function(){ ... })
-			case Function:
-				window.addEventListener('load', () => {
-					Reflect.apply(parameter, null, []);
-				});
-
-				break;
 			default:
-				console.warn('LightQuery: Invalid parameter.');
 		}
+
+		return result;
 	}
 
 	/**
 	 * Add elements to the current LightQuery elements
-	 * @param {Element|NodeList|String} parameter Element(s) to add
+	 * @param {Element|NodeList|Array|String} parameter Element(s) to add
 	 * @param {Element}                 context   Context of the potential query
 	 */
 	add(parameter, context){
 		if(parameter instanceof LightQuery){
 			this._elements.push(...parameter._elements);
 		}else{
-			this._elements.push(...new LightQuery(parameter, context)._elements);
+			this._elements.push(...LightQuery._STD(parameter, context));
 		}
 
 		return this;
@@ -81,6 +94,38 @@ class LightQuery{
 				element.classList.add(...parameter.split(/\s+/));
 			});
 		}
+
+		return this;
+	}
+
+	/**
+	 * Insert content after each element
+	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]|Function[]} elements Elements to be inserted
+	 */
+	after(...elements){
+		this._elements.forEach((element, index) => {
+			// Element-specific function
+			if(elements[0] instanceof Function){
+				const newElements = new LightQuery(Reflect.apply(elements[0], element, [index]))._elements;
+
+				let previousElement = element;
+
+				newElements.forEach(newElement => {
+					previousElement.parentNode.insertBefore(newElement, previousElement.nextSibling);
+					previousElement = newElement;
+				});
+			// Basic usage
+			}else{
+				elements.forEach(newElement => {
+					let previousElement = element;
+
+					LightQuery._STD(newElement).forEach(newSingleElement => {
+						previousElement.parentNode.insertBefore(newSingleElement, previousElement.nextSibling);
+						previousElement = newSingleElement;
+					});
+				});
+			}
+		});
 
 		return this;
 	}
