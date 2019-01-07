@@ -1,26 +1,31 @@
 /* exported $ */
 class LightQuery{
+	/**
+	 * 
+	 * @param {Element|NodeList|Array|String|Function} parameter The parameter to initialize the LightQuery object with
+	 * @param {Element} [context] 
+	 */
 	constructor(parameter, context){
 		/**
 		 * Elements holder
 		 * @type {Element[]}
 		 * @private
 		 */
-		this._elements = [];
+		this.items = [];
 
 		if(parameter instanceof Function){
 			window.addEventListener('load', () => {
 				Reflect.apply(parameter, null, []);
 			});
 		}else{
-			this._elements.push(...LightQuery._STD(parameter, context));
+			this.items.push(...LightQuery._STD(parameter, context));
 		}
 	}
 
 	/**
 	 * Standardizes any input to an Element array
 	 * @param {Element|NodeList|Array|String} parameter Element to standardize
-	 * @param {Element} context                         Potential query context
+	 * @param {Element} [context]                       Potential query context
 	 * @private
 	 */
 	static _STD(parameter, context){
@@ -35,7 +40,7 @@ class LightQuery{
 			// Array-like passed as a parameter
 			case NodeList:
 			case Array:
-				result.push(...Array.from(parameter));
+				result.push(...parameter);
 
 				break;
 			// String passed as a parameter
@@ -45,7 +50,7 @@ class LightQuery{
 					// Check the context before querying globally
 					const elements = (context || document).querySelectorAll(parameter);
 
-					result.push(...Array.from(elements));
+					result.push(...elements);
 				// Invalid selector
 				} catch (error) {
 					const template = document.createElement('template');
@@ -53,7 +58,7 @@ class LightQuery{
 					// Try to create a DOM from the string
 					template.innerHTML = parameter;
 
-					result.push(...Array.from(template.content.childNodes));
+					result.push(...template.content.childNodes);
 				}
 
 				break;
@@ -66,13 +71,14 @@ class LightQuery{
 	/**
 	 * Add elements to the current LightQuery elements
 	 * @param {Element|NodeList|Array|String} parameter Element(s) to add
-	 * @param {Element}                       context   Context of the potential query
+	 * @param {Element}                       [context] Context of the potential query
+	 * @returns {LightQuery} The current object
 	 */
 	add(parameter, context){
 		if(parameter instanceof LightQuery){
-			this._elements.push(...parameter._elements);
+			this.items.push(...parameter.items);
 		}else{
-			this._elements.push(...LightQuery._STD(parameter, context));
+			this.items.push(...LightQuery._STD(parameter, context));
 		}
 
 		return this;
@@ -81,10 +87,11 @@ class LightQuery{
 	/**
 	 * Add class(es) to each element
 	 * @param {String|Function} parameter Space separated classes to add
+	 * @returns {LightQuery} The current object
 	 */
 	addClass(parameter){
-		this._elements.forEach(element => {
-			element.classList.add(...parameter.split(/\s+/));
+		this.items.forEach(item => {
+			item.classList.add(...parameter.split(/\s+/));
 		});
 
 		return this;
@@ -93,11 +100,12 @@ class LightQuery{
 	/**
 	 * Insert content after each element
 	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be inserted
+	 * @returns {LightQuery} The current object
 	 */
 	after(...elements){
-		this._elements.forEach(element => {
+		this.items.forEach(item => {
 			elements.forEach(newElement => {
-				let previousElement = element;
+				let previousElement = item;
 
 				LightQuery._STD(newElement).forEach(newSingleElement => {
 					previousElement.insertAdjacentElement('afterend', newSingleElement);
@@ -112,11 +120,12 @@ class LightQuery{
 	/**
 	 * Append content to the end of each element
 	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be appended
+	 * @returns {LightQuery} The current object
 	 */
 	append(...elements){
-		this._elements.forEach(element => {
+		this.items.forEach(item => {
 			elements.forEach(newElement => {
-				element.append(...LightQuery._STD(newElement));
+				item.append(...LightQuery._STD(newElement));
 			});
 		});
 
@@ -126,10 +135,11 @@ class LightQuery{
 	/**
 	 * Append each element to the end of the targets
 	 * @param {Element|NodeList|Array|String|LightQuery} targets Elements to be appended to
+	 * @returns {LightQuery} The current object
 	 */
 	appendTo(targets){
 		LightQuery._STD(targets).forEach(target => {
-			target.append(...this._elements);
+			target.append(...this.items);
 		});
 
 		return this;
@@ -137,18 +147,19 @@ class LightQuery{
 
 	/**
 	 * Set/Get an attribute for each element
-	 * @param {String} name 
-	 * @param {String|Number|null} value 
+	 * @param {String}              name    The attribute name
+	 * @param {String|Number|null}  [value] The attribute value
+	 * @returns {LightQuery|String} The current object or the value of the attribute
 	 */
 	attr(name, value){
 		// Getter
 		if(typeof value == 'undefined'){
-			return this._elements[0].getAttribute(name);
+			return this.items[0].getAttribute(name);
 		}
 
 		// Setter
-		this._elements.forEach(element => {
-			element.setAttribute(name, value);
+		this.items.forEach(item => {
+			item.setAttribute(name, value);
 		});
 
 		return this;
@@ -157,15 +168,16 @@ class LightQuery{
 	/**
 	 * Insert content before each element
 	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]} elements Elements to be inserted
+	 * @returns {LightQuery} The current object
 	 */
 	before(...elements){
 		// For each current element
-		this._elements.forEach(element => {
+		this.items.forEach(item => {
 			// For each new element
 			elements.forEach(newElement => {
 				// For each single node from the new element
 				LightQuery._STD(newElement).forEach(newSingleElement => {
-					element.insertAdjacentElement('beforebegin', newSingleElement);
+					item.insertAdjacentElement('beforebegin', newSingleElement);
 				});
 			});
 		});
@@ -174,12 +186,32 @@ class LightQuery{
 	}
 
 	/**
-	 * Forces the focus out of each element
+	 * Force the focus out of each element
+	 * @returns {LightQuery} The current object
 	 */
 	blur(){
-		this._elements.forEach(element => {
-			element.blur();
+		this.items.forEach(item => {
+			item.blur();
 		});
+
+		return this;
+	}
+
+	/**
+	 * Get the children of each element
+	 * @param {String}       [selector] An optional filter
+	 * @returns {LightQuery} The current object's children
+	 */
+	children(selector){
+		const children = [];
+
+		this.items.forEach(item => {
+			[...item.children].forEach(child => {
+				if(!selector || child.matches(selector)) children.push(child);
+			});
+		});
+
+		return new LightQuery(children);
 	}
 }
 
