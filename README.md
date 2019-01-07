@@ -17,6 +17,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.addClass()`
   * `.after()`
   * `.append()`
+  * `.appendTo()`
 
 
 * **TODO**

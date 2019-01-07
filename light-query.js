@@ -155,6 +155,20 @@ class LightQuery{
 
 		return this;
 	}
+
+	/**
+	 * Append each element to the end of the targets
+	 * @param {Element|NodeList|Array|String|LightQuery|} targets Elements to be appended to
+	 */
+	appendTo(targets){
+		LightQuery._STD(targets).forEach(target => {
+			this._elements.forEach(element => {
+				target.appendChild(element);
+			});
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new LightQuery(parameter);
