@@ -16,11 +16,20 @@ Simply import `light-query.min.js` into your HTML.
   * `.add()`
   * `.addClass()`
   * `.after()`
+  * `.append()`
 
 
 * **TODO**
 
   * `.addBack()`
+  * `.ajaxComplete()`
+  * `.ajaxError()`
+  * `.ajaxSend()`
+  * `.ajaxStart()`
+  * `.ajaxStop()`
+  * `.ajaxSuccess()`
+  * `.andSelf()`
+  * `.animate()`
 
 ## Authors
 

@@ -106,7 +106,7 @@ class LightQuery{
 		this._elements.forEach((element, index) => {
 			// Element-specific function
 			if(elements[0] instanceof Function){
-				const newElements = new LightQuery(Reflect.apply(elements[0], element, [index]))._elements;
+				const newElements = LightQuery._STD(Reflect.apply(elements[0], element, [index]));
 
 				let previousElement = element;
 
@@ -122,6 +122,32 @@ class LightQuery{
 					LightQuery._STD(newElement).forEach(newSingleElement => {
 						previousElement.parentNode.insertBefore(newSingleElement, previousElement.nextSibling);
 						previousElement = newSingleElement;
+					});
+				});
+			}
+		});
+
+		return this;
+	}
+
+	/**
+	 * Append content to the end of each element
+	 * @param {Element[]|NodeList[]|Array[]|String[]|LightQuery[]|Function[]} elements Elements to be appended
+	 */
+	append(...elements){
+		this._elements.forEach((element, index) => {
+			// Element-specific function
+			if(elements[0] instanceof Function){
+				const newElements = LightQuery._STD(Reflect.apply(elements[0], element, [index]));
+
+				newElements.forEach(newElement => {
+					element.appendChild(newElement);
+				});
+			// Basic usage
+			}else{
+				elements.forEach(newElement => {
+					LightQuery._STD(newElement).forEach(newSingleElement => {
+						element.appendChild(newSingleElement);
 					});
 				});
 			}
