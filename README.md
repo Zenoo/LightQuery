@@ -25,6 +25,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.closest()`
   * `.css()`
   * `.detach()`
+  * `.each()`
 
 
 * **Not included**
@@ -46,6 +47,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.delay()` *Use `setTimeout()` or CSS3 animations instead*
   * `.delegate()` *Use `.on()` instead*
   * `.dequeue()` *There is no queue*
+  * `.die()` *Use `.off()` instead*
 
 ## Authors
 

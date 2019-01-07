@@ -282,6 +282,20 @@ class _${
 
 		return this;
 	}
+
+	/**
+	 * Iterate over each element
+	 * Inside this method, `this` corresponds to the current element
+	 * @param {Function} callback 
+	 * @returns {_$} The current object
+	 */
+	each(callback){
+		this.items.forEach((item, index) => {
+			Reflect.apply(callback, item, [index, item]);
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
