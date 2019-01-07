@@ -1,3 +1,10 @@
+### Version 0.9.0 - 2019-01-07
+- Created .css() (Zenoo)
+- Created .detach() (Zenoo)
+- Created .each() (Zenoo)
+- Created .empty() (Zenoo)
+- Created .eq() (Zenoo)
+
 ### Version 0.8.0 - 2019-01-07
 - Created .contents() (Zenoo)
 
