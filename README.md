@@ -13,12 +13,12 @@ Simply import `light-query.min.js` into your HTML.
 
 * **Methods**
 
-  * .add()
+  * `.add()`
 
 
 * **TODO**
 
-  * .addBack()
+  * `.addBack()`
 
 ## Authors
 

@@ -64,6 +64,26 @@ class LightQuery{
 
 		return this;
 	}
+
+	/**
+	 * Add class(es) to each element
+	 * @param {String|Function} parameter Space separated classes to add, or a Function that returns a String for each element
+	 */
+	addClass(parameter){
+		// Element-specific function
+		if(parameter instanceof Function){
+			this._elements.forEach((element, index) => {
+				element.classList.add(...Reflect.apply(parameter, element, [index]).split(/\s+/));
+			});
+		// Basic usage
+		}else{
+			this._elements.forEach(element => {
+				element.classList.add(...parameter.split(/\s+/));
+			});
+		}
+
+		return this;
+	}
 }
 
 const $ = parameter => new LightQuery(parameter);
