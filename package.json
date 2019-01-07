@@ -1,0 +1,25 @@
+{
+  "name": "light-query",
+  "version": "0.0.1",
+  "description": "A lightweight jQuery alternative",
+  "main": "light-query.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zenoo/LightQuery.git"
+  },
+  "keywords": [
+    "jquery",
+    "alternative",
+    "lightweight",
+    "light"
+  ],
+  "author": "Zenoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zenoo/LightQuery/issues"
+  },
+  "homepage": "https://github.com/Zenoo/LightQuery#readme"
+}
