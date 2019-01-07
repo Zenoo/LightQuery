@@ -27,6 +27,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.detach()`
   * `.each()`
   * `.empty()`
+  * `.eq()`
 
 
 * **Not included**
@@ -49,6 +50,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.delegate()` *Use `.on()` instead*
   * `.dequeue()` *There is no queue*
   * `.die()` *Use `.off()` instead*
+  * `.end()` *Use another query instead*
 
 ## Authors
 

@@ -31,38 +31,31 @@ class _${
 	static _STD(parameter, context){
 		const result = [];
 
-		switch (parameter.constructor){
-			// Element passed as a parameter
-			case Element:
-				result.push(parameter);
+		// Element passed as a parameter
+		if(parameter instanceof Element){
+			result.push(parameter);
 
-				break;
-			// Array-like passed as a parameter
-			case NodeList:
-			case Array:
-				result.push(...parameter);
+		// Array-like passed as a parameter
+		}else if(parameter instanceof NodeList || parameter instanceof Array){
+			result.push(...parameter);
 
-				break;
-			// String passed as a parameter
-			case String:
-				// Valid selector
-				try {
-					// Check the context before querying globally
-					const elements = (context || document).querySelectorAll(parameter);
+		// String passed as a parameter
+		}else if(typeof parameter == 'string'){
+			// Valid selector
+			try {
+				// Check the context before querying globally
+				const elements = (context || document).querySelectorAll(parameter);
 
-					result.push(...elements);
-				// Invalid selector
-				} catch (error) {
-					const template = document.createElement('template');
+				result.push(...elements);
+			// Invalid selector
+			} catch (error) {
+				const template = document.createElement('template');
 
-					// Try to create a DOM from the string
-					template.innerHTML = parameter;
+				// Try to create a DOM from the string
+				template.innerHTML = parameter;
 
-					result.push(...template.content.childNodes);
-				}
-
-				break;
-			default:
+				result.push(...template.content.childNodes);
+			}
 		}
 
 		return result;
@@ -286,8 +279,8 @@ class _${
 	/**
 	 * Iterate over each element
 	 * Inside this method, `this` corresponds to the current element
-	 * @param {Function} callback 
-	 * @returns {_$} The current object
+	 * @param {Function} callback The callback function
+	 * @returns {_$}     The current object
 	 */
 	each(callback){
 		this.items.forEach((item, index) => {
@@ -299,7 +292,6 @@ class _${
 
 	/**
 	 * Remove all child nodes of each element
-	 * @param {Function} callback 
 	 * @returns {_$} The current object
 	 */
 	empty(){
@@ -308,6 +300,16 @@ class _${
 		});
 
 		return this;
+	}
+
+	/**
+	 * Get the Nth element (a negative N starts counting from the end)
+	 * @param {Number} position 
+	 * @returns {_$}   The Nth element's object
+	 */
+	eq(position){
+		console.log(this.items[1]);
+		return new _$(this.items[position >= 0 ? position : this.items.length + position]);
 	}
 }
 
