@@ -26,6 +26,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.css()`
   * `.detach()`
   * `.each()`
+  * `.empty()`
 
 
 * **Not included**

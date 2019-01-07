@@ -296,6 +296,19 @@ class _${
 
 		return this;
 	}
+
+	/**
+	 * Remove all child nodes of each element
+	 * @param {Function} callback 
+	 * @returns {_$} The current object
+	 */
+	empty(){
+		this.items.forEach(item => {
+			item.innerHTML = '';
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
