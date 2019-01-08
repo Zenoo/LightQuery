@@ -1,4 +1,11 @@
 /* exported $ */
+/* global AjaxSender */
+
+/**
+ * The AjaxSender class
+ * @external AjaxSender
+ * @see {@link https://zenoo.github.io/ajax-sender/AjaxSender.html}
+ */
 
 /**
  * LightQuery holder class
@@ -503,6 +510,69 @@ class _$ extends Array{
 
 		return !!this.filter(item => item.matches(target)).length;
 	}
+
+	/**
+	 * Callback function used for the XHR error
+	 *
+	 * @callback errorCallback
+	 * @param {XMLHttpRequest} response The XHR response
+	 */
+
+	/**
+	 * Callback function used for the XHR success
+	 *
+	 * @callback successCallback
+	 * @param {Object} response The XHR response
+	 */
+
+	/**
+	 * Send an AJAX request
+	 * @param   {String|Object}           parameter                  URL of the request or settings object
+	 * @param   {Object}                  [settings]                 Settings object
+	 * @param   {Object}                  [settings]                 Settings object
+     * @param   {Object|FormData}	      [parameters.data]          Request data
+     * @param   {String}	              [parameters.dataType=json] Response data type
+     * @param   {errorCallback}	          [parameters.error]         Callback for the error event
+     * @param   {Object.<String, String>} [parameters.headers]       Request headers
+     * @param   {String}	              [parameters.method=GET]    Request method
+     * @param   {successCallback}	      [parameters.success]       Callback for the success event
+     * @param   {String}	              [parameters.url]           Request URL
+	 * @returns {XMLHttpRequest}                                     The XHR request
+	 */
+	static ajax(parameter, settings){
+		// Load AjaxSender
+		new Promise(resolve => {
+			if(typeof AjaxSender == 'function'){
+				resolve();
+			}else{
+				const script = document.createElement('script');
+		
+				script.src = 'https://gitcdn.link/repo/Zenoo/ajax-sender/v0.1.7/AjaxSender.min.js';
+				script.onload = () => {
+					resolve();
+				};
+			
+				document.querySelector('head').appendChild(script);
+			}
+		}).then(() => {
+			// AjaxSender is ready here
+			if(!settings){
+				settings = parameter;
+				parameter = settings.url;
+			}
+	
+			return new AjaxSender(parameter, {
+				method: settings.method || 'GET',
+				data: settings.data,
+				responseType: settings.dataType || 'json',
+				header: settings.headers,
+				load: settings.success,
+				error: settings.error
+			}).xhr;
+		});
+	}
 }
 
 const $ = parameter => new _$(parameter);
+
+$.ajax = _$.ajax;

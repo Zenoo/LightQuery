@@ -40,6 +40,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.insertAfter()`
   * `.insertBefore()`
   * `.is()`
+  * `$.ajax()` *Uses [AjaxSender](https://github.com/Zenoo/ajax-sender)*
 
 
 * **Not included**
