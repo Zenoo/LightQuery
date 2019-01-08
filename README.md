@@ -28,6 +28,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.each()`
   * `.empty()`
   * `.eq()`
+  * `.filter()`
 
 
 * **Not included**
@@ -51,6 +52,11 @@ Simply import `light-query.min.js` into your HTML.
   * `.dequeue()` *There is no queue*
   * `.die()` *Use `.off()` instead*
   * `.end()` *Use another query instead*
+  * `.error()` *Use `.on('error')` instead*
+  * `.fadeIn()` *Use classes and CSS transitions instead*
+  * `.fadeOut()` *Use classes and CSS transitions instead*
+  * `.fadeTo()` *Use classes and CSS transitions instead*
+  * `.fadeToggle()` *Use classes and CSS transitions instead*
 
 ## Authors
 

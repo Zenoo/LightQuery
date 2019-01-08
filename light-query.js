@@ -308,8 +308,26 @@ class _${
 	 * @returns {_$}   The Nth element's object
 	 */
 	eq(position){
-		console.log(this.items[1]);
 		return new _$(this.items[position >= 0 ? position : this.items.length + position]);
+	}
+
+	/**
+	 * Filter elements from a selector or a function returning a Boolean
+	 * @param {String|Function} parameter 
+	 * @returns {_$}   The filtered object
+	 */
+	filter(parameter){
+		const filtered = [];
+
+		this.items.forEach((item, index) => {
+			// Filter by function
+			if(parameter instanceof Function){
+				if(Reflect.apply(parameter, item, [index, item])) filtered.push(item);
+			// Filter by selector
+			}else if(item.matches(parameter)) filtered.push(item);
+		});
+
+		return new _$(filtered);
 	}
 }
 
