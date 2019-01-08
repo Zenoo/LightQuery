@@ -824,12 +824,7 @@ class _$ extends Array{
 	}
 }
 
-const $Builder = parameter => new _$(parameter);
+const $ = parameter => new _$(parameter);
 
-$Builder.ajax = _$.ajax;
-$Builder.get = _$.get;
-
-// eslint-disable-next-line no-delete-var
-delete $Builder;
-
-const $ = Object.freeze($Builder);
+$.ajax = _$.ajax;
+$.get = _$.get;
