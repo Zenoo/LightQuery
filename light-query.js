@@ -406,6 +406,25 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Get the HTML of the first element or Set each element's HTML
+	 * @param   html The HTML to set
+	 * @returns {_$} The current object
+	 */
+	html(html){
+		// Get
+		if(!html){
+			return this[0].innerHTML;
+		}
+
+		// Set
+		this.forEach(item => {
+			item.innerHTML = html;
+		});
+		
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);

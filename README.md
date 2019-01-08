@@ -35,6 +35,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.hasClass()`
   * `.height()`
   * `.hide()`
+  * `.html()`
 
 
 * **Not included**
@@ -67,6 +68,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.focus()` *Use `.on('focus')` or `.trigger('focus')` instead*
   * `.focusin()` *Use `.on('focusin')` instead*
   * `.focusout()` *Use `.on('focusout')` instead*
+  * `.hover()` *Use `.on('mouseenter')` and `.on('mouseleave')` instead*
 
 ## Authors
 
