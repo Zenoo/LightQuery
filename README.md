@@ -38,6 +38,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.html()`
   * `.index()`
   * `.insertAfter()`
+  * `.insertBefore()`
 
 
 * **Not included**

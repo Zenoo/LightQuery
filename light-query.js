@@ -437,7 +437,7 @@ class _$ extends Array{
 	/**
 	 * Insert each element after the target
 	 * @param   {String|Element|_$|Element[]} target The target
-	 * @returns {_$}                       The current object
+	 * @returns {_$}                                 The current object
 	 */
 	insertAfter(target){
 		const targets = [];
@@ -456,6 +456,31 @@ class _$ extends Array{
 			this.forEach(item => {
 				previousElement.insertAdjacentElement('afterend', item);
 				previousElement = item;
+			});
+		});
+
+		return this;
+	}
+
+	/**
+	 * Insert each element before the target
+	 * @param   {String|Element|_$|Element[]} target The target
+	 * @returns {_$}                                 The current object
+	 */
+	insertBefore(target){
+		const targets = [];
+
+		if(target instanceof _$ || target instanceof Array){
+			targets.push(...target);
+		}else if(target instanceof Element){
+			targets.push(target);
+		}else{
+			targets.push(...document.querySelectorAll(target));
+		}
+
+		targets.forEach(currentTarget => {
+			this.forEach(item => {
+				currentTarget.insertAdjacentElement('beforebegin', item);
 			});
 		});
 
