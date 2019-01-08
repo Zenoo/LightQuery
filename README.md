@@ -45,6 +45,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.last()`
   * `.next()`
   * `.nextAll()`
+  * `.not()`
 
 
 * **Not included**
@@ -100,6 +101,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.mouseout()` *Use `.on('mouseout')` or `.trigger('mouseout')` instead*
   * `.mouseover()` *Use `.on('mouseover')` or `.trigger('mouseover')` instead*
   * `.mouseup()` *Use `.on('mouseup')` or `.trigger('mouseup')` instead*
+  * `.nextUntil()` *Use better queries instead*
 
 ## Authors
 

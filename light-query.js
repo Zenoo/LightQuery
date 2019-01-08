@@ -32,8 +32,9 @@ class _$ extends Array{
 
 	/**
 	 * Standardizes any input to an Element array
-	 * @param {Element|NodeList|Array|String} parameter Element to standardize
-	 * @param {Element}                       [context] Potential query context
+	 * @param   {Element|NodeList|Array|String} parameter Element to standardize
+	 * @param   {Element}                       [context] Potential query context
+	 * @returns {Element[]}                               Resulting Element array
 	 * @private
 	 */
 	static _STD(parameter, context){
@@ -621,6 +622,25 @@ class _$ extends Array{
 		});
 
 		return new _$(selector ? nextSiblings.filter(sibling => sibling.matches(selector)) : nextSiblings);
+	}
+
+	/**
+	 * Remove elements matching the target from the current object
+	 * @param   {Element|NodeList|Array|String|Function|_$} target The target
+	 * @returns {_$}                                               Object containing elements not matching the target
+	 */
+	not(target){
+		const unmatched = [];
+
+		this.forEach((item, index) => {
+			if(target instanceof Function){
+				if(!Reflect.apply(target, item, [index, item])) unmatched.push(item);
+			}else if(target instanceof _$){
+				if(!target.includes(item)) unmatched.push(item);
+			}else if(!_$._STD(target).includes(item)) unmatched.push(item);
+		});
+
+		return new _$(unmatched);
 	}
 }
 
