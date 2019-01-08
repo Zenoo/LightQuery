@@ -43,6 +43,7 @@ Simply import `light-query.min.js` into your HTML.
   * `$.ajax()` *Uses [AjaxSender](https://github.com/Zenoo/ajax-sender)*
   * `$.get()` *$.ajax() shorthand for simple GET requests*
   * `.last()`
+  * `.next()`
 
 
 * **Not included**
@@ -89,6 +90,15 @@ Simply import `light-query.min.js` into your HTML.
   * `.keydown()` *Use `.on('keydown')` or `.trigger('keydown')` instead*
   * `.keypress()` *Use `.on('keypress')` or `.trigger('keypress')` instead*
   * `.keyup()` *Use `.on('keyup')` or `.trigger('keyup')` instead*
+  * `.live()` *Use `.on()` instead*
+  * `.load()` *Use `$.ajax()` and `.html()` instead*
+  * `.mousedown()` *Use `.on('mousedown')` or `.trigger('mousedown')` instead*
+  * `.mouseenter()` *Use `.on('mouseenter')` or `.trigger('mouseenter')` instead*
+  * `.mouseleave()` *Use `.on('mouseleave')` or `.trigger('mouseleave')` instead*
+  * `.mousemove()` *Use `.on('mousemove')` or `.trigger('mousemove')` instead*
+  * `.mouseout()` *Use `.on('mouseout')` or `.trigger('mouseout')` instead*
+  * `.mouseover()` *Use `.on('mouseover')` or `.trigger('mouseover')` instead*
+  * `.mouseup()` *Use `.on('mouseup')` or `.trigger('mouseup')` instead*
 
 ## Authors
 

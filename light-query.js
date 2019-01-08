@@ -594,6 +594,15 @@ class _$ extends Array{
 	last(){
 		return this.eq(this.length - 1);
 	}
+
+	/**
+	 * Get next immediate sibling. If a selector is provided, doesn't return the sibling if it doesn't match
+	 * @param   {String} [selector] The sibling selector
+	 * @returns {_$}                The next immediate sibling
+	 */
+	next(selector){
+		return this.map(item => selector ? item.nextElementSibling.matches(selector) ? item.nextElementSibling : null : item.nextElementSibling).filter(Boolean);
+	}
 }
 
 const $ = parameter => new _$(parameter);
