@@ -304,7 +304,7 @@ class _${
 
 	/**
 	 * Get the Nth element (a negative N starts counting from the end)
-	 * @param {Number} position 
+	 * @param {Number} position The element position
 	 * @returns {_$}   The Nth element's object
 	 */
 	eq(position){
@@ -313,7 +313,7 @@ class _${
 
 	/**
 	 * Filter elements from a selector or a function returning a Boolean
-	 * @param {String|Function} parameter 
+	 * @param {String|Function} parameter A selector or a filtering function
 	 * @returns {_$}   The filtered object
 	 */
 	filter(parameter){
@@ -328,6 +328,21 @@ class _${
 		});
 
 		return new _$(filtered);
+	}
+
+	/**
+	 * Find descendants of each element corresponding to the selector
+	 * @param {String} selector The selector
+	 * @returns {_$}   The corresponding descendants' object
+	 */
+	find(selector){
+		const descendants = [];
+
+		this.items.forEach(item => {
+			descendants.push(...item.querySelectorAll(selector));
+		});
+
+		return new _$(descendants);
 	}
 }
 
