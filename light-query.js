@@ -10,7 +10,7 @@
  
 /**
  * Events holder
- * @type {Object.<String, Object.<String, Object>[]>}
+ * @type {Object.<String, Object[]>}
  * @private
  */
 const __$_events__ = {}; // eslint-disable-line camelcase
