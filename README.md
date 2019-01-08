@@ -49,6 +49,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.off()`
   * `.offset()`
   * `.parent()`
+  * `.parents()`
 
 
 * **Not included**

@@ -221,7 +221,7 @@ class _$ extends Array{
 			});
 		});
 
-		return new _$(children);
+		return new _$([...new Set(children)]);
 	}
 
 	/**
@@ -344,7 +344,7 @@ class _$ extends Array{
 			}else if(item.matches(parameter)) filtered.push(item);
 		});
 
-		return new _$(filtered);
+		return new _$([...new Set(filtered)]);
 	}
 
 	/**
@@ -359,7 +359,7 @@ class _$ extends Array{
 			descendants.push(...item.querySelectorAll(selector));
 		});
 
-		return new _$(descendants);
+		return new _$([...new Set(descendants)]);
 	}
 
 	/**
@@ -629,7 +629,7 @@ class _$ extends Array{
 			nextSiblings.push(...siblings.slice(index + 1, siblings.length));
 		});
 
-		return new _$(selector ? nextSiblings.filter(sibling => sibling.matches(selector)) : nextSiblings);
+		return new _$([...new Set(selector ? nextSiblings.filter(sibling => sibling.matches(selector)) : nextSiblings)]);
 	}
 
 	/**
@@ -648,7 +648,7 @@ class _$ extends Array{
 			}else if(!_$._STD(target).includes(item)) unmatched.push(item);
 		});
 
-		return new _$(unmatched);
+		return new _$([...new Set(unmatched)]);
 	}
 
 	/**
@@ -762,7 +762,32 @@ class _$ extends Array{
 	 * @returns {_$}                The parent(s)
 	 */
 	parent(selector){
-		return [...new Set(selector ? this.map(item => item.parentElement.matches(selector) ? item.parentElement : null).filter(Boolean) : this.map(item => item.parentElement))];
+		return new _$([...new Set(selector ? this.map(item => item.parentElement.matches(selector) ? item.parentElement : null).filter(Boolean) : this.map(item => item.parentElement))]);
+	}
+
+	/**
+	 * Get the ancestors of each element. If a selector is passed, filter those parents
+	 * @param   {String} [selector] The parents selector
+	 * @returns {_$}                The parent(s)
+	 */
+	parents(selector){
+		const parents = new Set();
+
+		this.forEach(item => {
+			let parent = item.parentElement;
+
+			while(parent){
+				if(selector){
+					if(parent.matches(selector)) parents.add(parent);
+				}else{
+					parents.add(parent);
+				}
+
+				parent = parent.parentElement;
+			}
+		});
+
+		return new _$([...parents]);
 	}
 }
 
