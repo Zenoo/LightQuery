@@ -1,3 +1,9 @@
+### Version 0.10.0 - 2019-01-08
+- Created .filter() (Zenoo)
+- Created .find() (Zenoo)
+- Created .first() (Zenoo)
+- Edited base class to extend Array + Created .get() (Zenoo)
+
 ### Version 0.9.0 - 2019-01-07
 - Created .css() (Zenoo)
 - Created .detach() (Zenoo)
