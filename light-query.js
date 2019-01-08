@@ -789,9 +789,31 @@ class _$ extends Array{
 
 		return new _$([...parents]);
 	}
+
+	/**
+	 * Prepend content to the end of each element
+	 * @param   {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be prepended
+	 * @returns {_$}                                                  The current object
+	 */
+	prepend(...elements){
+		this.forEach(item => {
+			elements.forEach(newElement => {
+				_$._STD(newElement).forEach(newSingleElement => {
+					item.insertAdjacentElement('beforebegin', newSingleElement);
+				});
+			});
+		});
+
+		return this;
+	}
 }
 
-const $ = parameter => new _$(parameter);
+const $Builder = parameter => new _$(parameter);
 
-$.ajax = _$.ajax;
-$.get = _$.get;
+$Builder.ajax = _$.ajax;
+$Builder.get = _$.get;
+
+// eslint-disable-next-line no-delete-var
+delete $Builder;
+
+const $ = Object.freeze($Builder);

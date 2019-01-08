@@ -50,6 +50,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.offset()`
   * `.parent()`
   * `.parents()`
+  * `.prepend()`
 
 
 * **Not included**
@@ -110,6 +111,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.one()` *Use `.on()` and `.off()` instead*
   * `.outerHeight()` *Use `.height()` and `.css()` instead*
   * `.outerWidth()` *Use `.width()` and `.css()` instead*
+  * `.parentsUntil()` *Use `.parents()` and `.not()` instead*
 
 ## Authors
 
