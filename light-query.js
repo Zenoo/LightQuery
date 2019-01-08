@@ -7,6 +7,14 @@
  * @see {@link https://zenoo.github.io/ajax-sender/AjaxSender.html}
  */
 
+ 
+/**
+ * Events holder
+ * @type {Object.<String, Object.<String, Object>[]>}
+ * @private
+ */
+const __$_events__ = {}; // eslint-disable-line camelcase
+
 /**
  * LightQuery holder class
  * @type {Element[]}
@@ -641,6 +649,103 @@ class _$ extends Array{
 		});
 
 		return new _$(unmatched);
+	}
+
+	/**
+	 * Remove an event handler
+	 * @param   {String}   events     The events to stop listening to
+	 * @param   {String}   [selector] The selector matching the one used with {@link _$#on}
+	 * @param   {Function} [handler]  The handler used with {@link _$#on}
+	 * @returns {_$}                  The current object
+	 */
+	off(events, selector, handler){
+		const eventList = events.split(/\s+/);
+
+		const eventsToRemove = [];
+
+		// Gather the events to remove
+		eventList.forEach(event => {
+			if(selector){
+				// .off(events, selector, handler)
+				if(handler){
+					// eslint-disable-next-line camelcase
+					eventsToRemove.push(...__$_events__[event].filter(stored => this.includes(stored.element) && stored.selector == selector && stored.handler == handler));
+				}else{
+					// .off(events, selector)
+
+					// eslint-disable-next-line camelcase
+					eventsToRemove.push(...__$_events__[event].filter(stored => this.includes(stored.element) && stored.selector == selector));
+				}
+			}else{
+				// .off(events)
+
+				// eslint-disable-next-line camelcase
+				eventsToRemove.push(...__$_events__[event].filter(stored => this.includes(stored.element)));
+			}
+		});
+
+		eventsToRemove.forEach(event => {
+			// Remove the events from the DOM
+			event.element.removeEventListener(event.eventName, event.silentHandler);
+
+			// Remove the events from the datastore
+			// eslint-disable-next-line camelcase
+			__$_events__[event.eventName] = __$_events__[event.eventName].filter(stored => stored != event);
+		});
+		
+		return this;
+	}
+
+	/**
+	 * Add an event handler
+	 * @param   {String}   events     The events to start listening to
+	 * @param   {String}   [selector] The selector used for event delegation
+	 * @param   {Function} handler    The handler for the event(s)
+	 * @param   {Object}   [data]     The data to be passed the the handler
+	 * @returns {_$}                  The current object
+	 */
+	on(events, selector, handler, data){
+		const eventList = events.split(/\s+/);
+
+		if(selector instanceof Function){
+			data = handler;
+			handler = selector;
+			selector = null;
+		}
+		
+		eventList.forEach(event => {
+			this.forEach(item => {
+				const silentHandler = e => {
+					if(selector){
+						const target = e.target.closest(selector);
+
+						if(item.contains(target)){
+							e.data = data;
+							Reflect.apply(handler, target, [e]);
+						}
+					}else{
+						e.data = data;
+						Reflect.apply(handler, item, [e]);
+					}
+				};
+
+				// Attach event
+				item.addEventListener(event, silentHandler);
+
+				// Store event in datastore
+				if(!__$_events__[event]) __$_events__[event] = []; // eslint-disable-line camelcase
+
+				__$_events__[event].push({ // eslint-disable-line camelcase
+					eventName: event,
+					element: item,
+					selector,
+					handler,
+					silentHandler
+				});
+			});
+		});
+		
+		return this;
 	}
 }
 

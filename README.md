@@ -46,6 +46,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.next()`
   * `.nextAll()`
   * `.not()`
+  * `.off()`
 
 
 * **Not included**
