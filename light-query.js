@@ -849,6 +849,18 @@ class _$ extends Array{
 
 		return new _$([...new Set(selector ? previousSiblings.filter(sibling => sibling.matches(selector)) : previousSiblings)]);
 	}
+
+	/**
+	 * Remove each element from the DOM
+	 * @returns {_$}   The current object
+	 */
+	remove(){
+		this.forEach(item => {
+			item.remove();
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);

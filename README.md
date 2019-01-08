@@ -54,6 +54,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.prependTo()`
   * `.prev()`
   * `.prevAll()`
+  * `.remove()`
 
 
 * **Not included**
@@ -115,6 +116,12 @@ Simply import `light-query.min.js` into your HTML.
   * `.outerHeight()` *Use `.height()` and `.css()` instead*
   * `.outerWidth()` *Use `.width()` and `.css()` instead*
   * `.parentsUntil()` *Use `.parents()` and `.not()` instead*
+  * `.prevUntil()` *Use better queries instead*
+  * `.promise()` *There is no queue*
+  * `.prop()` *Use `.attr()` instead*
+  * `.pushStack()` *There is no stack*
+  * `.queue()` *There is no queue*
+  * `.ready()` *Use `$(function(){ ... })` or `$(() => { ... })` instead*
 
 ## Authors
 
