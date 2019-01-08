@@ -806,6 +806,22 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Prepend each element before the targets
+	 * @param   {Element|NodeList|Array|String|_$} targets Elements to be prepended to
+	 * @returns {_$}                                       The current object
+	 */
+	prependTo(targets){
+		_$._STD(targets).forEach(target => {
+			this.forEach(item => {
+				console.log(item);
+				target.insertAdjacentElement('beforebegin', item);
+			});
+		});
+
+		return this;
+	}
 }
 
 const $Builder = parameter => new _$(parameter);

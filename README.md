@@ -51,6 +51,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.parent()`
   * `.parents()`
   * `.prepend()`
+  * `.prependTo()`
 
 
 * **Not included**
