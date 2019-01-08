@@ -697,6 +697,14 @@ class _$ extends Array{
 	}
 
 	/**
+	 * Get the coordinates of the first element
+	 * @returns {DOMRect} Object containing the coordinates of the first element. *Use `.left`, `.top`*
+	 */
+	offset(){
+		return this[0].getBoundingClientRect();
+	}
+
+	/**
 	 * Add an event handler
 	 * @param   {String}   events     The events to start listening to
 	 * @param   {String}   [selector] The selector used for event delegation
@@ -749,11 +757,12 @@ class _$ extends Array{
 	}
 
 	/**
-	 * Get the coordinates of the first element
-	 * @returns {DOMRect} Object containing the coordinates of the first element. *Use `.left`, `.top`*
+	 * Get the parent of each element. If a selector is passed, filter those parents
+	 * @param   {String} [selector] The parent selector
+	 * @returns {_$}                The parent(s)
 	 */
-	offset(){
-		return this[0].getBoundingClientRect();
+	parent(selector){
+		return [...new Set(selector ? this.map(item => item.parentElement.matches(selector) ? item.parentElement : null).filter(Boolean) : this.map(item => item.parentElement))];
 	}
 }
 

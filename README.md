@@ -48,17 +48,18 @@ Simply import `light-query.min.js` into your HTML.
   * `.not()`
   * `.off()`
   * `.offset()`
+  * `.parent()`
 
 
 * **Not included**
 
   * `.addBack()` *Use more appropriate selectors instead*
-  * `.ajaxComplete()`
-  * `.ajaxError()`
-  * `.ajaxSend()`
-  * `.ajaxStart()`
-  * `.ajaxStop()`
-  * `.ajaxSuccess()`
+  * `.ajaxComplete()` *Use `$.ajax()` instead*
+  * `.ajaxError()` *Use `$.ajax()` instead*
+  * `.ajaxSend()` *Use `$.ajax()` instead*
+  * `.ajaxStart()` *Use `$.ajax()` instead*
+  * `.ajaxStop()` *Use `$.ajax()` instead*
+  * `.ajaxSuccess()` *Use `$.ajax()` instead*
   * `.andSelf()` *Use more appropriate selectors instead*
   * `.animate()` *Use CSS3 animations instead*
   * `.change()` *Use `.on('change')` or `.trigger('change')` instead*
@@ -104,6 +105,10 @@ Simply import `light-query.min.js` into your HTML.
   * `.mouseover()` *Use `.on('mouseover')` or `.trigger('mouseover')` instead*
   * `.mouseup()` *Use `.on('mouseup')` or `.trigger('mouseup')` instead*
   * `.nextUntil()` *Use better queries instead*
+  * `.offsetParent()` *Why would you ever need this*
+  * `.one()` *Use `.on()` and `.off()` instead*
+  * `.outerHeight()` *Use `.height()` and `.css()` instead*
+  * `.outerWidth()` *Use `.width()` and `.css()` instead*
 
 ## Authors
 
