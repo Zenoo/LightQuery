@@ -357,7 +357,7 @@ class _$ extends Array{
 	/**
 	 * Get one or every element
 	 * @param   {Number} [index] The element index (null to get every element)
-	 * @returns {_$}   The requested element(s)
+	 * @returns {Element|Element[]}   The requested element(s)
 	 */
 	get(index){
 		return index ? this[index] : [...this];
@@ -376,6 +376,15 @@ class _$ extends Array{
 
 		//Reduce by selector
 		return new _$(this.filter(item => item.querySelector(parameter)));
+	}
+
+	/**
+	 * Determines if an element contains the given class
+	 * @param {String} classname The class name
+	 * @returns {Boolean} True if an element contains the class, false otherwise
+	 */
+	hasClass(className){
+		return !!this.filter(item => item.classList.contains(className)).length;
 	}
 }
 
