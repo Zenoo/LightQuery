@@ -887,6 +887,20 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Replace each target with each element
+	 * @param   {Element|NodeList|Array|String} targets The targets
+	 * @returns {_$}                                    The current object
+	 */
+	replaceAll(targets){
+		_$._STD(targets).forEach(target => {
+			this.insertAfter(target);
+			target.remove();
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);

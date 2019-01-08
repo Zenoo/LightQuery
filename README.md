@@ -57,6 +57,8 @@ Simply import `light-query.min.js` into your HTML.
   * `.remove()`
   * `.removeAttr()`
   * `.removeClass()`
+  * `.replaceAll()`
+  * `.replaceWith()`
 
 
 * **Not included**
@@ -124,6 +126,8 @@ Simply import `light-query.min.js` into your HTML.
   * `.pushStack()` *There is no stack*
   * `.queue()` *There is no queue*
   * `.ready()` *Use `$(function(){ ... })` or `$(() => { ... })` instead*
+  * `.removeData()` *Use `.removeAttr()` instead*
+  * `.removeProp()` *Use `.removeAttr()` instead*
 
 ## Authors
 
