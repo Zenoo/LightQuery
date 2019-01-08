@@ -394,6 +394,18 @@ class _$ extends Array{
 	height(){
 		return this[0].clientHeight;
 	}
+
+	/**
+	 * Hide each element
+	 * @returns {_$} The current object
+	 */
+	hide(){
+		this.forEach(item => {
+			item.style.display = 'none';
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
