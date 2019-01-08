@@ -747,6 +747,14 @@ class _$ extends Array{
 		
 		return this;
 	}
+
+	/**
+	 * Get the coordinates of the first element
+	 * @returns {DOMRect} Object containing the coordinates of the first element. *Use `.left`, `.top`*
+	 */
+	offset(){
+		return this[0].getBoundingClientRect();
+	}
 }
 
 const $ = parameter => new _$(parameter);
