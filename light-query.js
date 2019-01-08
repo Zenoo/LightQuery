@@ -527,17 +527,16 @@ class _$ extends Array{
 
 	/**
 	 * Send an AJAX request
-	 * @param   {String|Object}           parameter                  URL of the request or settings object
-	 * @param   {Object}                  [settings]                 Settings object
-	 * @param   {Object}                  [settings]                 Settings object
-     * @param   {Object|FormData}	      [parameters.data]          Request data
-     * @param   {String}	              [parameters.dataType=json] Response data type
-     * @param   {errorCallback}	          [parameters.error]         Callback for the error event
-     * @param   {Object.<String, String>} [parameters.headers]       Request headers
-     * @param   {String}	              [parameters.method=GET]    Request method
-     * @param   {successCallback}	      [parameters.success]       Callback for the success event
-     * @param   {String}	              [parameters.url]           Request URL
-	 * @returns {XMLHttpRequest}                                     The XHR request
+	 * @param   {String|Object}           parameter                URL of the request or settings object
+	 * @param   {Object}                  [settings]               Settings object
+     * @param   {Object|FormData}	      [settings.data]          Request data
+     * @param   {String}	              [settings.dataType=json] Response data type
+     * @param   {errorCallback}	          [settings.error]         Callback for the error event
+     * @param   {Object.<String, String>} [settings.headers]       Request headers
+     * @param   {String}	              [settings.method=GET]    Request method
+     * @param   {successCallback}	      [settings.success]       Callback for the success event
+     * @param   {String}	              [settings.url]           Request URL
+	 * @returns {XMLHttpRequest}                                   The XHR request
 	 */
 	static ajax(parameter, settings){
 		// Load AjaxSender
@@ -571,8 +570,33 @@ class _$ extends Array{
 			}).xhr;
 		});
 	}
+
+	/**
+	 * Shorthand for sending a GET AJAX request
+	 * @param   {String}          url        URL of the request or settings object
+	 * @param   {Object}          [data]     Request data
+	 * @param   {successCallback} [success]  Callback for the success event
+     * @param   {String}	      [dataType] Response data type
+	 * @returns {XMLHttpRequest}             The XHR request
+	 */
+	static get(url, data, success, dataType){
+		return _$.ajax(url, {
+			data,
+			success,
+			dataType
+		});
+	}
+
+	/**
+	 * Get the last element
+	 * @returns {_$}   The last element's object
+	 */
+	last(){
+		return this.eq(this.length - 1);
+	}
 }
 
 const $ = parameter => new _$(parameter);
 
 $.ajax = _$.ajax;
+$.get = _$.get;

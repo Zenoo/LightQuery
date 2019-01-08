@@ -41,6 +41,8 @@ Simply import `light-query.min.js` into your HTML.
   * `.insertBefore()`
   * `.is()`
   * `$.ajax()` *Uses [AjaxSender](https://github.com/Zenoo/ajax-sender)*
+  * `$.get()` *$.ajax() shorthand for simple GET requests*
+  * `.last()`
 
 
 * **Not included**
@@ -76,6 +78,17 @@ Simply import `light-query.min.js` into your HTML.
   * `.hover()` *Use `.on('mouseenter')` and `.on('mouseleave')` instead*
   * `.innerHeight()` *Use `.height()` instead*
   * `.innerWidth()` *Use `.width()` instead*
+  * `$.each()` *Use `for ... of` or `.forEach()` instead*
+  * `$.extend()` *Use `Object.assign()` instead*
+  * `$.fn.extend()` *Use `_$.prototype.XXX` instead*
+  * `$.getJSON()` *Use `$.ajax()` instead*
+  * `$.getScript()` *Use `$.ajax()` instead*
+  * `$.globalEval()` *Use proper coding instead*
+  * `$.post()` *Use `$.ajax()` instead*
+  * `.queue()` *There is no queue*
+  * `.keydown()` *Use `.on('keydown')` or `.trigger('keydown')` instead*
+  * `.keypress()` *Use `.on('keypress')` or `.trigger('keypress')` instead*
+  * `.keyup()` *Use `.on('keyup')` or `.trigger('keyup')` instead*
 
 ## Authors
 
