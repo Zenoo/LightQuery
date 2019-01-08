@@ -1,4 +1,10 @@
 /* exported $ */
+
+/**
+ * LightQuery holder class
+ * @type {Element[]}
+ * @extends Array
+ */
 class _$ extends Array{
 	/**
 	 * 
@@ -317,7 +323,7 @@ class _$ extends Array{
 		this.forEach((item, index) => {
 			// Filter by function
 			if(parameter instanceof Function){
-				if(Reflect.apply(parameter, item, [index, item])) filtered.push(item);
+				if(Reflect.apply(parameter, item, [item, index])) filtered.push(item);
 			// Filter by selector
 			}else if(item.matches(parameter)) filtered.push(item);
 		});
@@ -355,6 +361,21 @@ class _$ extends Array{
 	 */
 	get(index){
 		return index ? this[index] : [...this];
+	}
+
+	/**
+	 * Reduce the elements based on a descendant selector or descendant element
+	 * @param {String|Element} parameter The selector or element to reduce with
+	 * @returns {_$}   The corresponding elements' object
+	 */
+	has(parameter){
+		// Reduce by element
+		if(parameter instanceof Element){
+			return new _$(this.filter(item => item.contains(parameter)));
+		}
+
+		//Reduce by selector
+		return new _$(this.filter(item => item.querySelector(parameter)));
 	}
 }
 

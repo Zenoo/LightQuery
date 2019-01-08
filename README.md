@@ -28,9 +28,11 @@ Simply import `light-query.min.js` into your HTML.
   * `.each()`
   * `.empty()`
   * `.eq()`
-  * `.filter()`
+  * `.filter(callback)` *The callback follows `function(item, index){ ... }`*
   * `.first()`
   * `.get()`
+  * `.has()`
+  * `.hasClass()`
 
 
 * **Not included**
