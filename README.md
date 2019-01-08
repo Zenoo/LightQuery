@@ -36,6 +36,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.height()`
   * `.hide()`
   * `.html()`
+  * `.index()`
 
 
 * **Not included**

@@ -425,6 +425,14 @@ class _$ extends Array{
 		
 		return this;
 	}
+
+	/**
+	 * Get the first element's index in relation to its siblings
+	 * @returns {Number} The index
+	 */
+	index(){
+		return [...this[0].parentElement.children].indexOf(this[0]);
+	}
 }
 
 const $ = parameter => new _$(parameter);
