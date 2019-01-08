@@ -379,12 +379,20 @@ class _$ extends Array{
 	}
 
 	/**
-	 * Determines if an element contains the given class
+	 * Determine if an element contains the given class
 	 * @param {String} classname The class name
 	 * @returns {Boolean} True if an element contains the class, false otherwise
 	 */
 	hasClass(className){
 		return !!this.filter(item => item.classList.contains(className)).length;
+	}
+
+	/**
+	 * Get the computed height of the first element
+	 * @returns {Number} The computed height of the first element (px)
+	 */
+	height(){
+		return this[0].clientHeight;
 	}
 }
 

@@ -33,6 +33,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.get()`
   * `.has()`
   * `.hasClass()`
+  * `.height()`
 
 
 * **Not included**
