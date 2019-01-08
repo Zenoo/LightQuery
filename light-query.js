@@ -603,6 +603,25 @@ class _$ extends Array{
 	next(selector){
 		return this.map(item => selector ? item.nextElementSibling.matches(selector) ? item.nextElementSibling : null : item.nextElementSibling).filter(Boolean);
 	}
+
+	/**
+	 * Get next siblings. If a selector is provided, doesn't return the siblings if they don't match
+	 * @param   {String} [selector] The sibling selector
+	 * @returns {_$}                The next immediate sibling
+	 */
+	nextAll(selector){
+		const nextSiblings = [];
+
+		this.forEach(item => {
+			const
+				siblings = [...item.parentElement.children],
+				index = siblings.indexOf(item);
+
+			nextSiblings.push(...siblings.slice(index + 1, siblings.length));
+		});
+
+		return new _$(selector ? nextSiblings.filter(sibling => sibling.matches(selector)) : nextSiblings);
+	}
 }
 
 const $ = parameter => new _$(parameter);
