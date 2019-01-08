@@ -9,7 +9,7 @@ class _$ extends Array{
 	/**
 	 * 
 	 * @param {Element|NodeList|Array|String|Function} parameter The parameter to initialize the _$ object with
-	 * @param {Element} [context] 
+	 * @param {Element}                                [context] Potential query context
 	 */
 	constructor(parameter, context){
 		super();
@@ -26,7 +26,7 @@ class _$ extends Array{
 	/**
 	 * Standardizes any input to an Element array
 	 * @param {Element|NodeList|Array|String} parameter Element to standardize
-	 * @param {Element} [context]                       Potential query context
+	 * @param {Element}                       [context] Potential query context
 	 * @private
 	 */
 	static _STD(parameter, context){
@@ -64,9 +64,9 @@ class _$ extends Array{
 
 	/**
 	 * Add elements to the current _$ elements
-	 * @param {Element|NodeList|Array|String} parameter Element(s) to add
-	 * @param {Element}                       [context] Context of the potential query
-	 * @returns {_$} The current object
+	 * @param   {Element|NodeList|Array|String} parameter Element(s) to add
+	 * @param   {Element}                       [context] Context of the potential query
+	 * @returns {_$}                                      The current object
 	 */
 	add(parameter, context){
 		if(parameter instanceof _$){
@@ -80,8 +80,8 @@ class _$ extends Array{
 
 	/**
 	 * Add class(es) to each element
-	 * @param {String|Function} parameter Space separated classes to add
-	 * @returns {_$} The current object
+	 * @param   {String|Function} parameter Space separated classes to add
+	 * @returns {_$}                        The current object
 	 */
 	addClass(parameter){
 		this.forEach(item => {
@@ -93,8 +93,8 @@ class _$ extends Array{
 
 	/**
 	 * Insert content after each element
-	 * @param {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be inserted
-	 * @returns {_$} The current object
+	 * @param  {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be inserted
+	 * @returns {_$}                                                 The current object
 	 */
 	after(...elements){
 		this.forEach(item => {
@@ -113,8 +113,8 @@ class _$ extends Array{
 
 	/**
 	 * Append content to the end of each element
-	 * @param {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be appended
-	 * @returns {_$} The current object
+	 * @param   {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be appended
+	 * @returns {_$}                                                  The current object
 	 */
 	append(...elements){
 		this.forEach(item => {
@@ -128,8 +128,8 @@ class _$ extends Array{
 
 	/**
 	 * Append each element to the end of the targets
-	 * @param {Element|NodeList|Array|String|_$} targets Elements to be appended to
-	 * @returns {_$} The current object
+	 * @param   {Element|NodeList|Array|String|_$} targets Elements to be appended to
+	 * @returns {_$}                                       The current object
 	 */
 	appendTo(targets){
 		_$._STD(targets).forEach(target => {
@@ -141,9 +141,9 @@ class _$ extends Array{
 
 	/**
 	 * Set/Get an attribute for each element
-	 * @param {String}              name    The attribute name
-	 * @param {String|Number|null}  [value] The attribute value
-	 * @returns {_$|String} The current object or the value of the attribute
+	 * @param   {String}              name    The attribute name
+	 * @param   {String|Number|null}  [value] The attribute value
+	 * @returns {_$|String}                   The current object or the value of the attribute
 	 */
 	attr(name, value){
 		// Getter
@@ -161,8 +161,8 @@ class _$ extends Array{
 
 	/**
 	 * Insert content before each element
-	 * @param {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be inserted
-	 * @returns {_$} The current object
+	 * @param   {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be inserted
+	 * @returns {_$}                                                  The current object
 	 */
 	before(...elements){
 		// For each current element
@@ -193,8 +193,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the children of each element
-	 * @param {String}       [selector] An optional filter
-	 * @returns {_$} The current object's children
+	 * @param   {String} [selector] An optional filter
+	 * @returns {_$}                The current object's children
 	 */
 	children(selector){
 		const children = [];
@@ -218,8 +218,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the closest (self-included) parent matching the selector for each element
-	 * @param {String} selector The selector
-	 * @returns {_$} A new LightQuery object
+	 * @param   {String} selector The selector
+	 * @returns {_$}              A new LightQuery object
 	 */
 	closest(selector){
 		return new _$(this.map(item => item.closest(selector)).filter(item => item));
@@ -239,9 +239,9 @@ class _$ extends Array{
 
 	/**
 	 * Set/Get a CSS property
-	 * @param {String|Object} parameter The CSS property name or an object containing every CSS properties to be changed
-	 * @param {String}        [value]   The CSS property value
-	 * @returns {_$} The current object
+	 * @param   {String|Object} parameter The CSS property name or an object containing every CSS properties to be changed
+	 * @param   {String}        [value]   The CSS property value
+	 * @returns {_$}                      The current object
 	 */
 	css(parameter, value){
 		// Simple String way
@@ -280,8 +280,8 @@ class _$ extends Array{
 	/**
 	 * Iterate over each element
 	 * Inside this method, `this` corresponds to the current element
-	 * @param {Function} callback The callback function
-	 * @returns {_$}     The current object
+	 * @param   {Function} callback The callback function
+	 * @returns {_$}                The current object
 	 */
 	each(callback){
 		this.forEach((item, index) => {
@@ -305,8 +305,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the Nth element (a negative N starts counting from the end)
-	 * @param {Number} position The element position
-	 * @returns {_$}   The Nth element's object
+	 * @param   {Number} position The element position
+	 * @returns {_$}              The Nth element's object
 	 */
 	eq(position){
 		return new _$(this[position >= 0 ? position : this.length + position]);
@@ -314,8 +314,8 @@ class _$ extends Array{
 
 	/**
 	 * Filter elements from a selector or a function returning a Boolean
-	 * @param {String|Function} parameter A selector or a filtering function
-	 * @returns {_$}   The filtered object
+	 * @param   {String|Function} parameter A selector or a filtering function
+	 * @returns {_$}                        The filtered object
 	 */
 	filter(parameter){
 		const filtered = [];
@@ -333,8 +333,8 @@ class _$ extends Array{
 
 	/**
 	 * Find descendants of each element corresponding to the selector
-	 * @param {String} selector The selector
-	 * @returns {_$}   The corresponding descendants' object
+	 * @param   {String} selector The selector
+	 * @returns {_$}              The corresponding descendants' object
 	 */
 	find(selector){
 		const descendants = [];
@@ -356,8 +356,8 @@ class _$ extends Array{
 
 	/**
 	 * Get one or every element
-	 * @param   {Number} [index] The element index (null to get every element)
-	 * @returns {Element|Element[]}   The requested element(s)
+	 * @param   {Number} [index]    The element index (null to get every element)
+	 * @returns {Element|Element[]} The requested element(s)
 	 */
 	get(index){
 		return index ? this[index] : [...this];
@@ -365,8 +365,8 @@ class _$ extends Array{
 
 	/**
 	 * Reduce the elements based on a descendant selector or descendant element
-	 * @param {String|Element} parameter The selector or element to reduce with
-	 * @returns {_$}   The corresponding elements' object
+	 * @param   {String|Element} parameter The selector or element to reduce with
+	 * @returns {_$}                       The corresponding elements' object
 	 */
 	has(parameter){
 		// Reduce by element
@@ -380,8 +380,8 @@ class _$ extends Array{
 
 	/**
 	 * Determine if an element contains the given class
-	 * @param {String} classname The class name
-	 * @returns {Boolean} True if an element contains the class, false otherwise
+	 * @param   {String} classname The class name
+	 * @returns {Boolean}          True if an element contains the class, false otherwise
 	 */
 	hasClass(className){
 		return !!this.filter(item => item.classList.contains(className)).length;
@@ -409,8 +409,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the HTML of the first element or Set each element's HTML
-	 * @param   html The HTML to set
-	 * @returns {_$} The current object
+	 * @param   {String} html The HTML to set
+	 * @returns {_$}          The current object
 	 */
 	html(html){
 		// Get
@@ -432,6 +432,34 @@ class _$ extends Array{
 	 */
 	index(){
 		return [...this[0].parentElement.children].indexOf(this[0]);
+	}
+
+	/**
+	 * Insert each element after the target
+	 * @param   {String|Element|_$|Element[]} target The target
+	 * @returns {_$}                       The current object
+	 */
+	insertAfter(target){
+		const targets = [];
+
+		if(target instanceof _$ || target instanceof Array){
+			targets.push(...target);
+		}else if(target instanceof Element){
+			targets.push(target);
+		}else{
+			targets.push(...document.querySelectorAll(target));
+		}
+
+		targets.forEach(currentTarget => {
+			let previousElement = currentTarget;
+
+			this.forEach(item => {
+				previousElement.insertAdjacentElement('afterend', item);
+				previousElement = item;
+			});
+		});
+
+		return this;
 	}
 }
 
