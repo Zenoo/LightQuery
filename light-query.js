@@ -616,7 +616,7 @@ class _$ extends Array{
 	/**
 	 * Get next siblings. If a selector is provided, doesn't return the siblings if they don't match
 	 * @param   {String} [selector] The sibling selector
-	 * @returns {_$}                The next immediate sibling
+	 * @returns {_$}                The next siblings
 	 */
 	nextAll(selector){
 		const nextSiblings = [];
@@ -815,12 +815,39 @@ class _$ extends Array{
 	prependTo(targets){
 		_$._STD(targets).forEach(target => {
 			this.forEach(item => {
-				console.log(item);
 				target.insertAdjacentElement('beforebegin', item);
 			});
 		});
 
 		return this;
+	}
+
+	/**
+	 * Get previous immediate sibling. If a selector is provided, doesn't return the sibling if it doesn't match
+	 * @param   {String} [selector] The sibling selector
+	 * @returns {_$}                The previous immediate sibling
+	 */
+	prev(selector){
+		return this.map(item => selector ? item.previousElementSibling.matches(selector) ? item.previousElementSibling : null : item.previousElementSibling).filter(Boolean);
+	}
+
+	/**
+	 * Get previous siblings. If a selector is provided, doesn't return the siblings if they don't match
+	 * @param   {String} [selector] The sibling selector
+	 * @returns {_$}                The previous siblings
+	 */
+	prevAll(selector){
+		const previousSiblings = [];
+
+		this.forEach(item => {
+			const
+				siblings = [...item.parentElement.children],
+				index = siblings.indexOf(item);
+
+			previousSiblings.push(...siblings.slice(0, index));
+		});
+
+		return new _$([...new Set(selector ? previousSiblings.filter(sibling => sibling.matches(selector)) : previousSiblings)]);
 	}
 }
 
