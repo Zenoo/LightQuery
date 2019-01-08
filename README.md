@@ -55,6 +55,8 @@ Simply import `light-query.min.js` into your HTML.
   * `.prev()`
   * `.prevAll()`
   * `.remove()`
+  * `.removeAttr()`
+  * `.removeClass()`
 
 
 * **Not included**

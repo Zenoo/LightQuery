@@ -96,7 +96,7 @@ class _$ extends Array{
 
 	/**
 	 * Add class(es) to each element
-	 * @param   {String|Function} parameter Space separated classes to add
+	 * @param   {String} parameter Space separated classes to add
 	 * @returns {_$}                        The current object
 	 */
 	addClass(parameter){
@@ -857,6 +857,32 @@ class _$ extends Array{
 	remove(){
 		this.forEach(item => {
 			item.remove();
+		});
+
+		return this;
+	}
+
+	/**
+	 * Remove an attribute from each element
+	 * @param   {String} attribute Attribute name
+	 * @returns {_$}               The current object
+	 */
+	removeAttr(attribute){
+		this.forEach(item => {
+			item.removeAttribute(attribute);
+		});
+
+		return this;
+	}
+
+	/**
+	 * Remove class(es) to each element
+	 * @param   {String} parameter Space separated classes to add
+	 * @returns {_$}                        The current object
+	 */
+	removeClass(parameter){
+		this.forEach(item => {
+			item.classList.remove(...parameter.split(/\s+/));
 		});
 
 		return this;
