@@ -344,6 +344,14 @@ class _${
 
 		return new _$(descendants);
 	}
+
+	/**
+	 * Get the first element
+	 * @returns {_$}   The first element's object
+	 */
+	first(){
+		return this.eq(0);
+	}
 }
 
 const $ = parameter => new _$(parameter);

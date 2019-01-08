@@ -29,6 +29,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.empty()`
   * `.eq()`
   * `.filter()`
+  * `.first()`
 
 
 * **Not included**
@@ -57,6 +58,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.fadeOut()` *Use classes and CSS transitions instead*
   * `.fadeTo()` *Use classes and CSS transitions instead*
   * `.fadeToggle()` *Use classes and CSS transitions instead*
+  * `.finish()` *Use CSS3 animations instead*
 
 ## Authors
 
