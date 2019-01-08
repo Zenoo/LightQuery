@@ -1,24 +1,19 @@
 /* exported $ */
-class _${
+class _$ extends Array{
 	/**
 	 * 
 	 * @param {Element|NodeList|Array|String|Function} parameter The parameter to initialize the _$ object with
 	 * @param {Element} [context] 
 	 */
 	constructor(parameter, context){
-		/**
-		 * Elements holder
-		 * @type {Element[]}
-		 * @private
-		 */
-		this.items = [];
+		super();
 
 		if(parameter instanceof Function){
 			window.addEventListener('load', () => {
 				Reflect.apply(parameter, null, []);
 			});
 		}else{
-			this.items.push(..._$._STD(parameter, context));
+			this.push(..._$._STD(parameter, context));
 		}
 	}
 
@@ -69,9 +64,9 @@ class _${
 	 */
 	add(parameter, context){
 		if(parameter instanceof _$){
-			this.items.push(...parameter.items);
+			this.push(...parameter);
 		}else{
-			this.items.push(..._$._STD(parameter, context));
+			this.push(..._$._STD(parameter, context));
 		}
 
 		return this;
@@ -83,7 +78,7 @@ class _${
 	 * @returns {_$} The current object
 	 */
 	addClass(parameter){
-		this.items.forEach(item => {
+		this.forEach(item => {
 			item.classList.add(...parameter.split(/\s+/));
 		});
 
@@ -96,7 +91,7 @@ class _${
 	 * @returns {_$} The current object
 	 */
 	after(...elements){
-		this.items.forEach(item => {
+		this.forEach(item => {
 			elements.forEach(newElement => {
 				let previousElement = item;
 
@@ -116,7 +111,7 @@ class _${
 	 * @returns {_$} The current object
 	 */
 	append(...elements){
-		this.items.forEach(item => {
+		this.forEach(item => {
 			elements.forEach(newElement => {
 				item.append(..._$._STD(newElement));
 			});
@@ -132,7 +127,7 @@ class _${
 	 */
 	appendTo(targets){
 		_$._STD(targets).forEach(target => {
-			target.append(...this.items);
+			target.append(...this);
 		});
 
 		return this;
@@ -147,11 +142,11 @@ class _${
 	attr(name, value){
 		// Getter
 		if(typeof value == 'undefined'){
-			return this.items[0].getAttribute(name);
+			return this[0].getAttribute(name);
 		}
 
 		// Setter
-		this.items.forEach(item => {
+		this.forEach(item => {
 			item.setAttribute(name, value);
 		});
 
@@ -165,7 +160,7 @@ class _${
 	 */
 	before(...elements){
 		// For each current element
-		this.items.forEach(item => {
+		this.forEach(item => {
 			// For each new element
 			elements.forEach(newElement => {
 				// For each single node from the new element
@@ -183,7 +178,7 @@ class _${
 	 * @returns {_$} The current object
 	 */
 	blur(){
-		this.items.forEach(item => {
+		this.forEach(item => {
 			item.blur();
 		});
 
@@ -198,7 +193,7 @@ class _${
 	children(selector){
 		const children = [];
 
-		this.items.forEach(item => {
+		this.forEach(item => {
 			[...item.children].forEach(child => {
 				if(!selector || child.matches(selector)) children.push(child);
 			});
@@ -212,7 +207,7 @@ class _${
 	 * @param {Boolean}      [deep=true] Deep clone the elements ?
 	 */
 	clone(deep){
-		return new _$(this.items.map(item => item.cloneNode(!!deep)));
+		return new _$(this.map(item => item.cloneNode(!!deep)));
 	}
 
 	/**
@@ -221,7 +216,7 @@ class _${
 	 * @returns {_$} A new LightQuery object
 	 */
 	closest(selector){
-		return new _$(this.items.map(item => item.closest(selector)).filter(item => item));
+		return new _$(this.map(item => item.closest(selector)).filter(item => item));
 	}
 
 	/**
@@ -229,7 +224,7 @@ class _${
 	 * @returns {Element[]} The child nodes
 	 */
 	contents(){
-		return this.items.reduce((acc, item) => {
+		return this.reduce((acc, item) => {
 			acc.push(...item.childNodes);
 
 			return acc;
@@ -246,15 +241,15 @@ class _${
 		// Simple String way
 		if(typeof parameter == 'string'){
 			if(value){
-				this.items.forEach(item => {
+				this.forEach(item => {
 					item.style[parameter] = value;
 				});
 			}else{
-				return this.items[0].style[parameter];
+				return this[0].style[parameter];
 			}
 		// Object way
 		}else{
-			this.items.forEach(item => {
+			this.forEach(item => {
 				Object.entries(parameter).forEach(([key, val]) => {
 					item.style[key] = val;
 				});
@@ -269,7 +264,7 @@ class _${
 	 * @returns {_$} The current object
 	 */
 	detach(){
-		this.items.forEach(item => {
+		this.forEach(item => {
 			item.parentElement.removeChild(item);
 		});
 
@@ -283,7 +278,7 @@ class _${
 	 * @returns {_$}     The current object
 	 */
 	each(callback){
-		this.items.forEach((item, index) => {
+		this.forEach((item, index) => {
 			Reflect.apply(callback, item, [index, item]);
 		});
 
@@ -295,7 +290,7 @@ class _${
 	 * @returns {_$} The current object
 	 */
 	empty(){
-		this.items.forEach(item => {
+		this.forEach(item => {
 			item.innerHTML = '';
 		});
 
@@ -308,7 +303,7 @@ class _${
 	 * @returns {_$}   The Nth element's object
 	 */
 	eq(position){
-		return new _$(this.items[position >= 0 ? position : this.items.length + position]);
+		return new _$(this[position >= 0 ? position : this.length + position]);
 	}
 
 	/**
@@ -319,7 +314,7 @@ class _${
 	filter(parameter){
 		const filtered = [];
 
-		this.items.forEach((item, index) => {
+		this.forEach((item, index) => {
 			// Filter by function
 			if(parameter instanceof Function){
 				if(Reflect.apply(parameter, item, [index, item])) filtered.push(item);
@@ -338,7 +333,7 @@ class _${
 	find(selector){
 		const descendants = [];
 
-		this.items.forEach(item => {
+		this.forEach(item => {
 			descendants.push(...item.querySelectorAll(selector));
 		});
 
@@ -351,6 +346,15 @@ class _${
 	 */
 	first(){
 		return this.eq(0);
+	}
+
+	/**
+	 * Get one or every element
+	 * @param   {Number} [index] The element index (null to get every element)
+	 * @returns {_$}   The requested element(s)
+	 */
+	get(index){
+		return index ? this[index] : [...this];
 	}
 }
 

@@ -30,6 +30,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.eq()`
   * `.filter()`
   * `.first()`
+  * `.get()`
 
 
 * **Not included**
@@ -43,11 +44,11 @@ Simply import `light-query.min.js` into your HTML.
   * `.ajaxSuccess()`
   * `.andSelf()` *Use more appropriate selectors instead*
   * `.animate()` *Use CSS3 animations instead*
-  * `.change()` *Use `.on('change')` instead*
+  * `.change()` *Use `.on('change')` or `.trigger('change')` instead*
   * `.clearQueue()` *There is no queue*
-  * `.click()` *Use `.on('click')` instead*
+  * `.click()` *Use `.on('click')` or `.trigger('click')` instead*
   * `.data()` *Use `.attr('data-...')` instead*
-  * `.dblclick()` *Use `.on('dblclick')` instead*
+  * `.dblclick()` *Use `.on('dblclick')` or `.trigger('dblclick')` instead*
   * `.delay()` *Use `setTimeout()` or CSS3 animations instead*
   * `.delegate()` *Use `.on()` instead*
   * `.dequeue()` *There is no queue*
@@ -59,6 +60,9 @@ Simply import `light-query.min.js` into your HTML.
   * `.fadeTo()` *Use classes and CSS transitions instead*
   * `.fadeToggle()` *Use classes and CSS transitions instead*
   * `.finish()` *Use CSS3 animations instead*
+  * `.focus()` *Use `.on('focus')` or `.trigger('focus')` instead*
+  * `.focusin()` *Use `.on('focusin')` instead*
+  * `.focusout()` *Use `.on('focusout')` instead*
 
 ## Authors
 
