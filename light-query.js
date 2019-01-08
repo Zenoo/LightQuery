@@ -381,7 +381,7 @@ class _$ extends Array{
 	/**
 	 * Determine if an element contains the given class
 	 * @param   {String} classname The class name
-	 * @returns {Boolean}          True if an element contains the class, false otherwise
+	 * @returns {Boolean}          `true` if an element contains the class, `false` otherwise
 	 */
 	hasClass(className){
 		return !!this.filter(item => item.classList.contains(className)).length;
@@ -485,6 +485,23 @@ class _$ extends Array{
 		});
 
 		return this;
+	}
+
+	/**
+	 * Check if at least one of the elements matches the target
+	 * @param   {String|Function|Element|_$} target The target
+	 * @returns {Boolean}                           `true` if at least one of the elements matches the target, `false` otherwise
+	 */
+	is(target){
+		if(target instanceof _$){
+			return !!this.filter(item => target.includes(item)).length;
+		}else if(target instanceof Function){
+			return !!this.filter((item, index) => Reflect.apply(target, item, [index, item])).length;
+		}else if(target instanceof Element){
+			return !!this.filter(item => target.isSameNode(item)).length;
+		}
+
+		return !!this.filter(item => item.matches(target)).length;
 	}
 }
 

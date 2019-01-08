@@ -39,6 +39,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.index()`
   * `.insertAfter()`
   * `.insertBefore()`
+  * `.is()`
 
 
 * **Not included**
