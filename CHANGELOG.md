@@ -1,3 +1,21 @@
+### Version 0.11.0 - 2019-01-08
+- Updated .filter() callback arguments + Created .has() (Zenoo)
+- Created .hasClass() (Zenoo)
+- Created .height() (Zenoo)
+- Created .hide() (Zenoo)
+- Created .html() (Zenoo)
+- Created .index() (Zenoo)
+- Created .insertAfter() (Zenoo)
+- Created .insertBefore() (Zenoo)
+- Created .is() (Zenoo)
+- Created $.ajax() (Using AjaxSender) (Zenoo)
+- Created $.get() & .last() (Zenoo)
+- Created .next() (Zenoo)
+- Created .nextAll() (Zenoo)
+- Created .not() (Zenoo)
+- Created global datastore + .off() + .on() (Zenoo)
+- Updated JSDoc (Zenoo)
+
 ### Version 0.10.0 - 2019-01-08
 - Created .filter() (Zenoo)
 - Created .find() (Zenoo)
