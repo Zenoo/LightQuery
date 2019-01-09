@@ -40,22 +40,22 @@ class _$ extends Array{
 
 	/**
 	 * Standardizes any input to an Element array
-	 * @param   {Element|NodeList|Array|String} parameter Element to standardize
-	 * @param   {Element}                       [context] Potential query context
-	 * @returns {Element[]}                               Resulting Element array
+	 * @param   {Element|NodeList|Array|String|Document|Window} parameter Element to standardize
+	 * @param   {Element}                                       [context] Potential query context
+	 * @returns {Element[]}                                               Resulting Element array
 	 * @private
 	 */
 	static _STD(parameter, context){
 		const result = [];
 
-		// Element passed as a parameter
-		if(parameter instanceof Element){
+		// Element | Document | Window passed as a parameter
+		if(parameter instanceof Element || parameter instanceof Document || parameter instanceof Window){
 			result.push(parameter);
 
 		// Array-like passed as a parameter
 		}else if(parameter instanceof NodeList || parameter instanceof Array){
 			result.push(...parameter);
-
+			
 		// String passed as a parameter
 		}else if(typeof parameter == 'string'){
 			// Valid selector
@@ -917,6 +917,26 @@ class _$ extends Array{
 			});
 
 			item.remove();
+		});
+
+		return this;
+	}
+
+	/**
+	 * Get the horizontal scroll value of the first element or set the horizontal scroll value for each element
+	 * @param {Number} value The new horizontal scroll value
+	 * @returns {Number|_$} The horizontal scroll value of the first element or the current object
+	 */
+	scrollLeft(value){
+		// Get
+		if(isNaN(value)){
+			return this[0] instanceof Document ? this[0].scrollingElement.scrollLeft : this[0].scrollLeft;
+		}
+
+		// Set
+		this.forEach(item => {
+			if(item instanceof Document) item.scrollingElement.scrollLeft = value;
+			else item.scrollLeft = value;
 		});
 
 		return this;
