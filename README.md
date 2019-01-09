@@ -62,6 +62,8 @@ Simply import `light-query.min.js` into your HTML.
   * `.scrollLeft()`
   * `.scrollTop()`
   * `.serialize()`
+  * `.serializeArray()`
+  * `.show()`
 
 
 * **Not included**

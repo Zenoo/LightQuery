@@ -16,6 +16,69 @@
 const __$_events__ = {}; // eslint-disable-line camelcase
 
 /**
+ * Default elements display value
+ * @type {Object.<String, String>}
+ * @private
+ */
+const __$_default_display_inline__ = [ // eslint-disable-line camelcase
+	'a',
+	'i',
+	'script',
+	'abbr',
+	'iframe',
+	'select',
+	'acronym',
+	'img',
+	'slot',
+	'audio',
+	'input',
+	'small',
+	'b',
+	'ins',
+	'span',
+	'bdi',
+	'kbd',
+	'strong',
+	'bdo',
+	'label',
+	'sub',
+	'big',
+	'map',
+	'sup',
+	'br',
+	'mark',
+	'svg',
+	'button',
+	'meter',
+	'template',
+	'canvas',
+	'noscript',
+	'textarea',
+	'cite',
+	'object',
+	'time',
+	'code',
+	'output',
+	'u',
+	'data',
+	'picture',
+	'tt',
+	'datalist',
+	'progress',
+	'var',
+	'del',
+	'q',
+	'video',
+	'dfn',
+	'ruby',
+	'wbr',
+	'em',
+	's',
+	'embed',
+	'samp'
+];
+
+/**
  * LightQuery holder class
  * @type {Element[]}
  * @extends Array
@@ -1002,6 +1065,27 @@ class _$ extends Array{
 		});
 
 		return array;
+	}
+
+	/**
+	 * Show each element
+	 * @returns {_$} The current object
+	 */
+	show(){
+		this.forEach(item => {
+			// Inline hidden
+			if(item.style && item.style.display == 'none'){
+				item.style.display = '';
+			}
+
+			// CSS hidden
+			if(item instanceof Element && getComputedStyle(item).display == 'none'){
+				// eslint-disable-next-line camelcase
+				item.style.display = __$_default_display_inline__[item.nodeName.toLowerCase()] ? 'inline' : 'block';
+			}
+		});
+
+		return this;
 	}
 }
 
