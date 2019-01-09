@@ -8,7 +8,7 @@ baseurl: "/LightQuery"
 title: LightQuery
 
 # Short description of your site
-description: A leightweight jQuery alternative
+description: A lightweight jQuery alternative
 
 show_downloads: true
 google_analytics:
