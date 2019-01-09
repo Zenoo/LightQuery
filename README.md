@@ -71,6 +71,7 @@ Simply import `light-query.min.js` into your HTML.
   * **`.toggleClass()`**
   * **`.trigger()`**
   * **`.unwrap()`**
+  * **`.val()`**
 
 
 * **Not included**

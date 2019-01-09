@@ -226,8 +226,8 @@ class _$ extends Array{
 	 */
 	attr(name, value){
 		// Getter
-		if(typeof value == 'undefined'){
-			return this[0].getAttribute(name);
+		if(typeof value === 'undefined'){
+			return this.length ? this[0].getAttribute(name) : null;
 		}
 
 		// Setter
@@ -330,7 +330,7 @@ class _$ extends Array{
 					item.style[parameter] = value;
 				});
 			}else{
-				return this[0].style[parameter] || getComputedStyle(this[0])[parameter];
+				return this.length ? this[0].style[parameter] || getComputedStyle(this[0])[parameter] : null;
 			}
 		// Object way
 		}else{
@@ -388,7 +388,7 @@ class _$ extends Array{
 	 * @returns {_$}              The Nth element's object
 	 */
 	eq(position){
-		return new _$(this[position >= 0 ? position : this.length + position]);
+		return this.length ? new _$(this[position >= 0 ? position : this.length + position]) : null;
 	}
 
 	/**
@@ -471,7 +471,7 @@ class _$ extends Array{
 	 * @returns {Number} The computed height of the first element (px)
 	 */
 	height(){
-		return this[0].clientHeight;
+		return this.length ? this[0].clientHeight : null;
 	}
 
 	/**
@@ -494,7 +494,7 @@ class _$ extends Array{
 	html(html){
 		// Get
 		if(!html){
-			return this[0].innerHTML;
+			return this.length ? this[0].innerHTML : null;
 		}
 
 		// Set
@@ -510,7 +510,7 @@ class _$ extends Array{
 	 * @returns {Number} The index
 	 */
 	index(){
-		return [...this[0].parentElement.children].indexOf(this[0]);
+		return this.length ? [...this[0].parentElement.children].indexOf(this[0]) : null;
 	}
 
 	/**
@@ -764,7 +764,7 @@ class _$ extends Array{
 	 * @returns {DOMRect} Object containing the coordinates of the first element. *Use `.left`, `.top`*
 	 */
 	offset(){
-		return this[0].getBoundingClientRect();
+		return this.length ? this[0].getBoundingClientRect() : null;
 	}
 
 	/**
@@ -972,14 +972,13 @@ class _$ extends Array{
 	 */
 	replaceWith(newContent){
 		this.forEach(item => {
-			let reference = item;
+			const newFragment = document.createDocumentFragment();
 
 			_$._STD(newContent).forEach(newSingleContent => {
-				reference.insertAdjacentElement('afterend', newSingleContent);
-				reference = newSingleContent;
+				newFragment.appendChild(newSingleContent);
 			});
 
-			item.remove();
+			item.parentElement.replaceChild(newFragment, item);
 		});
 
 		return this;
@@ -993,7 +992,7 @@ class _$ extends Array{
 	scrollLeft(value){
 		// Get
 		if(isNaN(value)){
-			return this[0] instanceof Document ? this[0].scrollingElement.scrollLeft : this[0].scrollLeft;
+			return this.length ? this[0] instanceof Document ? this[0].scrollingElement.scrollLeft : this[0].scrollLeft : null;
 		}
 
 		// Set
@@ -1013,7 +1012,7 @@ class _$ extends Array{
 	scrollTop(value){
 		// Get
 		if(isNaN(value)){
-			return this[0] instanceof Document ? this[0].scrollingElement.scrollTop : this[0].scrollTop;
+			return this.length ? this[0] instanceof Document ? this[0].scrollingElement.scrollTop : this[0].scrollTop : null;
 		}
 
 		// Set
@@ -1188,7 +1187,7 @@ class _$ extends Array{
 		});
 
 		parents.forEach(parent => {
-			if(!selector || (selector && parent.matches(selector))){
+			if(!selector || parent.matches(selector)){
 				const children = document.createDocumentFragment();
 
 				while(parent.firstChild){
@@ -1197,6 +1196,24 @@ class _$ extends Array{
 
 				parent.parentElement.replaceChild(children, parent);
 			}
+		});
+
+		return this;
+	}
+
+	/**
+	 * Get the value of the first element or set the value of each element
+	 * @param {*} value 
+	 */
+	val(value){
+		// Get
+		if(typeof value === 'undefined'){
+			return this.length ? this[0].value : null;
+		}
+
+		// Set
+		this.forEach(item => {
+			if(typeof item.value !== 'undefined') item.value = value;
 		});
 
 		return this;
