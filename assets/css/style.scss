@@ -22,8 +22,11 @@ table{
 		em,strong{
 			display: block;
 			font-size: 0.9em;
-			font-style: normal;
 			font-weight: 200;
+		}
+
+		em{
+			font-size: 0.8em;
 		}
 	}
 }

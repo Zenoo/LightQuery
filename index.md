@@ -54,7 +54,11 @@ $('p').map(...);
 
 The full API documentation is available on [https://zenoo.github.io/LightQuery/docs/-_$](https://zenoo.github.io/LightQuery/docs/-_$.html).
 
-However, here is a concise documentation:
+[| **.add(selector[, context])**|](#add)
+
+### Methods not included
+
+### In-depth method definition
 
 {:#add}
 | **.add(selector[, context])** *Add elements to the current LightQuery object* |
@@ -62,4 +66,9 @@ However, here is a concise documentation:
 | `selector`*{Element\|NodeList\|Array\|String\|_$}***Element(s) to add**       |
 | `context`*{Element}***Context of the potential query**                        |
 
-### Methods not included
+```js
+// Examples
+$('p').add('aside');
+$('p').add('<div>Example</div>');
+$('p').add(document.body);
+```
