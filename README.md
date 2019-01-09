@@ -72,6 +72,7 @@ Simply import `light-query.min.js` into your HTML.
   * **`.trigger()`**
   * **`.unwrap()`**
   * **`.val()`**
+  * **`.width()`**
 
 
 * **Not included**

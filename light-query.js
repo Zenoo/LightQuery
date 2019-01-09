@@ -1203,7 +1203,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the value of the first element or set the value of each element
-	 * @param {*} value 
+	 * @param   {Object} value The value to set
+	 * @returns {String|_$}    The value of the first element or the current object
 	 */
 	val(value){
 		// Get
@@ -1217,6 +1218,14 @@ class _$ extends Array{
 		});
 
 		return this;
+	}
+
+	/**
+	 * Get the computed width of the first element
+	 * @returns {Number} The computed width of the first element (px)
+	 */
+	width(){
+		return this.length ? this[0].clientWidth : null;
 	}
 }
 
