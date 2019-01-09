@@ -65,6 +65,8 @@ Simply import `light-query.min.js` into your HTML.
   * **`.serializeArray()`**
   * **`.show()`**
   * **`.siblings()`**
+  * **`.slice()`**
+  * **`.text()`**
 
 
 * **Not included**
@@ -138,6 +140,12 @@ Simply import `light-query.min.js` into your HTML.
   * **`.scroll()`** *Use `.on('scroll')` or `.trigger('scroll')` instead*
   * **`.select()`** *Use `.on('select')` or `.trigger('select')` instead*
   * **`.size()`** *Use `.length` instead*
+  * **`.slideDown()`** *Use classes and CSS transitions instead*
+  * **`.slideToggle()`** *Use classes and CSS transitions instead*
+  * **`.slideUp()`** *Use classes and CSS transitions instead*
+  * **`.stop()`** *Use CSS3 animations instead*
+  * **`.submit()`** *Use `.on('submit')` or `.trigger('submit')` instead*
+  * **`.toArray()`** *Use `.get()` instead*
 
 ## Authors
 

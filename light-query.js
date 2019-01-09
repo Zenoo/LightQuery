@@ -1102,6 +1102,25 @@ class _$ extends Array{
 
 		return new _$([...new Set(selector ? siblings.filter(sibling => sibling.matches(selector)) : siblings)]);
 	}
+
+	/**
+	 * Get/Set the text of each element
+	 * @param   {String|Function} value Text to set or Function returning the text to set
+	 * @returns {String|_$}             The text of each element or the current object
+	 */
+	text(value){
+		// Get
+		if(typeof value == 'undefined'){
+			return this.reduce((acc, item) => acc += item.innerText || item.textContent, '');
+		}
+
+		// Set
+		this.forEach(item => {
+			item.innerText = value;
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
