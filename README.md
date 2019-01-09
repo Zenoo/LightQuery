@@ -158,6 +158,7 @@ Simply import `light-query.min.js` into your HTML.
   * **`.unbind()`** *Use `.off()` instead*
   * **`.undelegate()`** *Use `.off()` instead*
   * **`.unload()`** *Use `.on('unload')` instead*
+  * **`.wrapInner()`** *Use `.children().wrapAll()` instead*
 
 ## Authors
 
