@@ -86,8 +86,8 @@ const __$_default_display_inline__ = [ // eslint-disable-line camelcase
 class _$ extends Array{
 	/**
 	 * 
-	 * @param {Element|NodeList|Array|String|Function} parameter The parameter to initialize the _$ object with
-	 * @param {Element}                                [context] Potential query context
+	 * @param {Element|NodeList|Array|String|Function|_$} parameter The parameter to initialize the _$ object with
+	 * @param {Element}                                   [context] Potential query context
 	 */
 	constructor(parameter, context){
 		super();
@@ -103,9 +103,9 @@ class _$ extends Array{
 
 	/**
 	 * Standardizes any input to an Element array
-	 * @param   {Element|NodeList|Array|String|Document|Window} parameter Element to standardize
-	 * @param   {Element}                                       [context] Potential query context
-	 * @returns {Element[]}                                               Resulting Element array
+	 * @param   {Element|NodeList|Array|String|Document|Window|_$} parameter Element to standardize
+	 * @param   {Element}                                          [context] Potential query context
+	 * @returns {Element[]}                                                  Resulting Element array
 	 * @private
 	 */
 	static _STD(parameter, context){
@@ -116,7 +116,7 @@ class _$ extends Array{
 			result.push(parameter);
 
 		// Array-like passed as a parameter
-		}else if(parameter instanceof NodeList || parameter instanceof Array){
+		}else if(parameter instanceof _$ || parameter instanceof NodeList || parameter instanceof Array){
 			result.push(...parameter);
 			
 		// String passed as a parameter
@@ -1203,8 +1203,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the value of the first element or set the value of each element
-	 * @param   {Object} value The value to set
-	 * @returns {String|_$}    The value of the first element or the current object
+	 * @param   {Object} [value] The value to set
+	 * @returns {String|_$}      The value of the first element or the current object
 	 */
 	val(value){
 		// Get
@@ -1226,6 +1226,30 @@ class _$ extends Array{
 	 */
 	width(){
 		return this.length ? this[0].clientWidth : null;
+	}
+
+	/**
+	 * Wrap each element
+	 * @param   {String} wrapper The wrapper
+	 * @returns {_$}             The current object
+	 */
+	wrap(wrapper){
+		this.forEach(item => {
+			const
+				newNode = document.createDocumentFragment(),
+				wrapperElements = _$._STD(wrapper);
+
+			if(wrapperElements.length){
+				const newClone = wrapperElements[0].cloneNode(true);
+
+				newNode.appendChild(newClone);
+				newClone.appendChild(item.cloneNode(true));
+				
+				item.parentElement.replaceChild(newNode, item);
+			}
+		});
+
+		return this;
 	}
 }
 
