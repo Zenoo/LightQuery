@@ -55,7 +55,7 @@ $('p').map(...);
 The full API documentation is available on [https://zenoo.github.io/LightQuery/docs/-_$](https://zenoo.github.io/LightQuery/docs/-_$.html).
 
 | **[.add(selector[, context])](#add)** |
-
+|:--------------------------------------|
 ### Methods not included
 
 ### In-depth method definition
@@ -63,8 +63,9 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 {:#add}
 | **.add(selector[, context])** *Add elements to the current LightQuery object* |
 |:------------------------------------------------------------------------------|
-| `selector`*{Element\|NodeList\|Array\|String\|_$}***Element(s) to add**       |
-| `context`*{Element}***Context of the potential query**                        |
+| `selector`*{Element\|NodeList\|Array\|String\|_$}**Element(s) to add*         |
+| `context`*{Element}**Context of the potential query*                          |
+  
 
 ```js
 // Examples
@@ -72,3 +73,5 @@ $('p').add('aside');
 $('p').add('<div>Example</div>');
 $('p').add(document.body);
 ```
+
+---
