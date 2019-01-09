@@ -70,6 +70,7 @@ Simply import `light-query.min.js` into your HTML.
   * **`.toggle()`**
   * **`.toggleClass()`**
   * **`.trigger()`**
+  * **`.unwrap()`**
 
 
 * **Not included**
@@ -149,6 +150,10 @@ Simply import `light-query.min.js` into your HTML.
   * **`.stop()`** *Use CSS3 animations instead*
   * **`.submit()`** *Use `.on('submit')` or `.trigger('submit')` instead*
   * **`.toArray()`** *Use `.get()` instead*
+  * **`.triggerHandler()`** *Use `.trigger()` instead*
+  * **`.unbind()`** *Use `.off()` instead*
+  * **`.undelegate()`** *Use `.off()` instead*
+  * **`.unload()`** *Use `.on('unload')` instead*
 
 ## Authors
 

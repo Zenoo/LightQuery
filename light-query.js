@@ -1174,6 +1174,33 @@ class _$ extends Array{
 			item.dispatchEvent(event);
 		});
 	}
+
+	/**
+	 * Remove the direct parents of each element, if they match the selector
+	 * @param   {String} [selector] The parent selector
+	 * @returns {_$}                The current object
+	 */
+	unwrap(selector){
+		const parents = new Set();
+
+		this.forEach(item => {
+			parents.add(item.parentElement);
+		});
+
+		parents.forEach(parent => {
+			if(!selector || (selector && parent.matches(selector))){
+				const children = document.createDocumentFragment();
+
+				while(parent.firstChild){
+					children.appendChild(parent.removeChild(parent.firstChild));
+				}
+
+				parent.parentElement.replaceChild(children, parent);
+			}
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
