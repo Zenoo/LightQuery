@@ -979,6 +979,30 @@ class _$ extends Array{
 
 		return stringified;
 	}
+
+	/**
+	 * Encode each form element as an array of names and values
+	 * @returns {Object[]} An array of names and values
+	 */
+	serializeArray(){
+		const array = [];
+
+		this.forEach(item => {
+			if(item instanceof HTMLFormElement){
+				array.push(...Array.from(new FormData(item), ([name, value]) => ({
+					name,
+					value
+				})));
+			}else if(typeof item.value !== 'undefined' && typeof item.name !== 'undefined'){
+				array.push({
+					name: item.name,
+					value: item.value
+				});
+			}
+		});
+
+		return array;
+	}
 }
 
 const $ = parameter => new _$(parameter);
