@@ -961,6 +961,24 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Encode each form element as a string
+	 * @returns {String} The serialized value of each element
+	 */
+	serialize(){
+		let stringified = '';
+
+		this.forEach(item => {
+			if(item instanceof HTMLFormElement) stringified += Array.from(new FormData(item), e => e.map(encodeURIComponent).join('=')).join('&');
+			else if(typeof item.value !== 'undefined' && typeof item.name !== 'undefined'){
+				if(stringified.length) stringified += '&';
+				stringified += encodeURIComponent(item.name) + '=' + encodeURIComponent(item.value);
+			}
+		});
+
+		return stringified;
+	}
 }
 
 const $ = parameter => new _$(parameter);

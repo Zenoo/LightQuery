@@ -61,6 +61,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.replaceWith()`
   * `.scrollLeft()`
   * `.scrollTop()`
+  * `.serialize()`
 
 
 * **Not included**
@@ -132,6 +133,7 @@ Simply import `light-query.min.js` into your HTML.
   * `.removeProp()` *Use `.removeAttr()` instead*
   * `.resize()` *Use `.on('resize')` or `.trigger('resize')` instead*
   * `.scroll()` *Use `.on('scroll')` or `.trigger('scroll')` instead*
+  * `.select()` *Use `.on('select')` or `.trigger('select')` instead*
 
 ## Authors
 
