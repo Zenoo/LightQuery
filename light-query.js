@@ -941,6 +941,26 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Get the vertical scroll value of the first element or set the vertical scroll value for each element
+	 * @param {Number} value The new horizontal scroll value
+	 * @returns {Number|_$} The horizontal scroll value of the first element or the current object
+	 */
+	scrollTop(value){
+		// Get
+		if(isNaN(value)){
+			return this[0] instanceof Document ? this[0].scrollingElement.scrollTop : this[0].scrollTop;
+		}
+
+		// Set
+		this.forEach(item => {
+			if(item instanceof Document) item.scrollingElement.scrollTop = value;
+			else item.scrollTop = value;
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
