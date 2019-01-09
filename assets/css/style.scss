@@ -8,13 +8,22 @@ table{
 		em{
 			display: block;
 			font-weight: 200;
-			font-style: none;
+			font-style: normal;
+			font-size: 0.9em;
 		}
 	}
 
 	td{
-		code,em,strong{
+		code:after {
+			content: "\a";
+			white-space: pre;
+		}
+
+		em,strong{
 			display: block;
+			font-size: 0.9em;
+			font-style: normal;
+			font-weight: 200;
 		}
 	}
 }
