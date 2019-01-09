@@ -1146,6 +1146,21 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Toggle class(es) for each element
+	 * @param   {String} parameter Space separated classes to toggle
+	 * @returns {_$}               The current object
+	 */
+	toggleClass(parameter){
+		this.forEach(item => {
+			parameter.split(/\s+/).forEach(className => {
+				item.classList.toggle(className);
+			});
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
