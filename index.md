@@ -55,6 +55,7 @@ $('p').map(...);
 The full API documentation is available on [https://zenoo.github.io/LightQuery/docs/-_$](https://zenoo.github.io/LightQuery/docs/-_$.html).
 
 | **[.add(selector[, context])](#add)** |
+| **[.addClass(classes)](#addClass)** |
 
 ### Methods not included
 
@@ -65,12 +66,27 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 |:------------------------------------------------------------------------------|
 | `selector`*{Element\|NodeList\|Array\|String\|_$}**Element(s) to add*         |
 | `context`*{Element}**Context of the potential query*                          |
+| **Returns**`{_$}`*The current LightQuery object*                              |
 
 ```js
 // Examples
 $('p').add('aside');
 $('p').add('<div>Example</div>');
 $('p').add(document.body);
+```
+
+---
+
+{:#addClass}
+| **.addClass(classes)** *Add class(es) to each element* |
+|:-------------------------------------------------------|
+| `classes`*{String}**Space separated classes to add*    |
+| **Returns**`{_$}`*The current LightQuery object*       |
+
+```js
+// Examples
+$('p').addClass('selected');
+$('p').addClass('selected blue bg');
 ```
 
 ---
