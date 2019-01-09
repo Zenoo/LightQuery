@@ -4,6 +4,8 @@ A lightweight jQuery alternative.
 
 ### Doc
 
+See the [documentation](https://zenoo.github.io/LightQuery/) for more
+
 * **Installation**
 
 Simply import `light-query.min.js` into your HTML.
