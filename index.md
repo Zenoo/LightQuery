@@ -18,6 +18,7 @@ Simply import `light-query.min.js` into your HTML by downloading it or using a C
 ### Usage
 
 * Initialize your object like you would in jQuery using `$`:
+
 ```js
 $(selector[, context])
 
@@ -27,6 +28,7 @@ let elementsWithContext = $('yo.ur[selec="tor"]', section);
 ```
 
 * If you need to wait for the document to be loaded, use:
+
 ```js
 $(() => {
 	// The document is loaded here
@@ -40,6 +42,7 @@ $(function(){
 ```
 
 * The `LightQuery` objects extend the native `Array` object, so you can use all of its methods/properties.
+
 ```js
 // Examples
 $('p').length;
