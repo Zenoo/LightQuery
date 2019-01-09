@@ -1,0 +1,15 @@
+# --- General options --- #
+
+# If you are building a GitHub project page then use these settings:
+url: "https://zenoo.github.io/LightQuery"
+baseurl: "/LightQuery"
+
+# Name of website
+title: LightQuery
+
+# Short description of your site
+description: A leightweight jQuery alternative
+
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-cayman
