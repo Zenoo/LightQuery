@@ -60,7 +60,7 @@ However, here is a concise documentation:
   Add elements to the current LightQuery object |
 |:----------------------------------------------|
 | **selector**                                  |
-| *{Element|NodeList|Array|String|_$}*          |
+| *{Element\|NodeList\|Array\|String\|_$}*          |
 | Element(s) to add                             |
 |:----------------------------------------------|
 | **context**                                   |
