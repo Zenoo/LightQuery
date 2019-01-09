@@ -55,7 +55,6 @@ $('p').map(...);
 The full API documentation is available on [https://zenoo.github.io/LightQuery/docs/-_$](https://zenoo.github.io/LightQuery/docs/-_$.html).
 
 | **[.add(selector[, context])](#add)** |
-|---------------------------------------|
 
 ### Methods not included
 
@@ -66,7 +65,6 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 |:------------------------------------------------------------------------------|
 | `selector`*{Element\|NodeList\|Array\|String\|_$}**Element(s) to add*         |
 | `context`*{Element}**Context of the potential query*                          |
-  
 
 ```js
 // Examples
