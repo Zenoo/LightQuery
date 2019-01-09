@@ -1,0 +1,15 @@
+table{
+	th{
+		i{
+			display: block;
+			font-weight: 200;
+			font-style: none;
+		}
+	}
+
+	td{
+		code,i,strong{
+			display: block;
+		}
+	}
+}

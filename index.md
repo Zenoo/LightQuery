@@ -56,9 +56,10 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 However, here is a concise documentation:
 
-| **.add(selector[, context])** <br />Add elements to the current LightQuery object   |
-|:------------------------------------------------------------------------------------|
-| `selector` <br /> *{Element\|NodeList\|Array\|String\|_$}* <br /> Element(s) to add |
-| `context` <br /> *{Element}* <br /> Context of the potential query                  |
+{:#add}
+| **.add(selector[, context])** *Add elements to the current LightQuery object* |
+|:------------------------------------------------------------------------------|
+| `selector`*{Element\|NodeList\|Array\|String\|_$}***Element(s) to add**       |
+| `context`*{Element}***Context of the potential query**                        |
 
 ### Methods not included
