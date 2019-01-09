@@ -54,9 +54,9 @@ $('p').map(...);
 
 The full API documentation is available on [https://zenoo.github.io/LightQuery/docs/-_$](https://zenoo.github.io/LightQuery/docs/-_$.html).
 
-| **[.add(selector[, context])](#add)** |
+| [**.add(selector[, context])**](#add) |
 
-| **[.addClass(classes)](#addClass)** |
+| [**.addClass(classes)**](#addClass) |
 
 ### Methods not included
 

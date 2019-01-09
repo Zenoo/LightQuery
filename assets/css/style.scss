@@ -6,28 +6,37 @@
 table{
 	margin-bottom: 10px;
 
-	th{
-		em{
-			display: block;
-			font-weight: 200;
-			font-style: normal;
-			font-size: 0.9em;
+	tr{
+		th{
+			em{
+				display: block;
+				font-weight: 200;
+				font-style: normal;
+				font-size: 0.9em;
+			}
+		}
+	
+		td{
+			code:after {
+				content: "\a";
+				white-space: pre;
+			}
+	
+			em{
+				display: block;
+				font-size: 0.8em;
+				font-weight: 200;
+			}
+		}
+
+		&:last-of-type{
+			td>strong{
+				font-size: 0.8em;
+			}
 		}
 	}
 
-	td{
-		code:after {
-			content: "\a";
-			white-space: pre;
-		}
-
-		em{
-			display: block;
-			font-size: 0.8em;
-			font-weight: 200;
-		}
-	}
-
+	// Grey headers
 	tr:first-of-type{
 		background-color: rgba(0,0,0,.05);
 	}
