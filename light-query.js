@@ -901,6 +901,26 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Replace each element with the new content
+	 * @param   {Element|NodeList|Array|String|_$} newContent The new content
+	 * @returns {_$}                                          The current object
+	 */
+	replaceWith(newContent){
+		this.forEach(item => {
+			let reference = item;
+
+			_$._STD(newContent).forEach(newSingleContent => {
+				reference.insertAdjacentElement('afterend', newSingleContent);
+				reference = newSingleContent;
+			});
+
+			item.remove();
+		});
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
