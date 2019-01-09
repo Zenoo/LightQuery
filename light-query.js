@@ -1087,6 +1087,21 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Get all siblings. If a selector is provided, doesn't return the siblings if they don't match
+	 * @param   {String} [selector] The sibling selector
+	 * @returns {_$}                The siblings
+	 */
+	siblings(selector){
+		const siblings = [];
+
+		this.forEach(item => {
+			siblings.push(...[...item.parentElement.children].filter(sibling => !this.includes(sibling)));
+		});
+
+		return new _$([...new Set(selector ? siblings.filter(sibling => sibling.matches(selector)) : siblings)]);
+	}
 }
 
 const $ = parameter => new _$(parameter);
