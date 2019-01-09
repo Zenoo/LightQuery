@@ -1161,6 +1161,19 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Trigger an event for each element
+	 * @param   {String} eventName Event name
+	 * @returns {_$}               The current object
+	 */
+	trigger(eventName){
+		this.forEach(item => {
+			const event = new Event(eventName);
+
+			item.dispatchEvent(event);
+		});
+	}
 }
 
 const $ = parameter => new _$(parameter);
