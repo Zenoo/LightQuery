@@ -60,16 +60,22 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.after(...elements)**](#after) |
 
+| [**.append(...elements)**](#append) |
+
+| [**.appendTo(targets)**](#appendTo) |
+
+| [**.attr(name[, value])**](#attr) |
+
 ### Methods not included
 
 ### In-depth method definition
 
 {:#add}
 | **.add(selector[, context])** *Add elements to the current LightQuery object* |
-|:------------------------------------------------------------------------------|
-| `selector`*{Element\|NodeList\|Array\|String\|_$}* *Element(s) to add*        |
-| `context`*{Element}* *Context of the potential query*                         |
-| **Returns**`{_$}`*The current LightQuery object*                              |
+|:---|
+| `selector`*{Element\|NodeList\|Array\|String\|_$}* *Element(s) to add* |
+| `context`*{Element}* *Context of the potential query* |
+| **Returns**`{_$}`*The current LightQuery object* |
 
 ```js
 // Examples
@@ -82,9 +88,9 @@ $('p').add(document.body);
 
 {:#addClass}
 | **.addClass(classes)** *Add class(es) to each element* |
-|:-------------------------------------------------------|
-| `classes`*{String}* *Space separated classes to add*   |
-| **Returns**`{_$}`*The current LightQuery object*       |
+|:---|
+| `classes`*{String}* *Space separated classes to add* |
+| **Returns**`{_$}`*The current LightQuery object* |
 
 ```js
 // Examples
@@ -95,15 +101,58 @@ $('p').addClass('selected blue bg');
 ---
 
 {:#after}
-| **.after(...content)** *Insert content after each element*                                              |
-|:--------------------------------------------------------------------------------------------------------|
-| `elements`*{Element\[\]\|NodeList\[\]\|Array\[\]\|String\[\]\|_$\[\]}* *Content to be inserted*         |
-| **Returns**`{_$}`*The current LightQuery object*       |
+| **.after(...content)** *Insert content after each element* |
+|:---|
+| `elements`*{Element\[\]\|NodeList\[\]\|Array\[\]\|String\[\]\|_$\[\]}* *Content to be inserted* |
+| **Returns**`{_$}`*The current LightQuery object* |
 
 ```js
 // Examples
 $('p').after('div');
 $('p').after('<aside>See more</aside>');
+```
+
+---
+
+{:#append}
+| **.append(...content)** *Append content to the end of each element* |
+|:---|
+| `content`*{Element\[\]\|NodeList\[\]\|Array\[\]\|String\[\]\|_$\[\]}* *Content to be appended* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('div').append('p');
+$('div').append('<aside>See more</aside>');
+```
+
+---
+
+{:#appendTo}
+| **.appendTo(targets)** *Append each element to the end of the targets* |
+|:---|
+| `elements`*{Element\|NodeList\|Array\|String\|_$}* *Content to be appended* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').appendTo('div');
+$('<aside>See more</aside>').appendTo('p');
+```
+
+---
+
+{:#attr}
+| **.attr(name[, value])** *Set/Get an attribute for each element* |
+|:---|
+| `name`*{String}* *The attribute name* |
+| `value`*{String\|Number\|null}* *The attribute value* |
+| **Returns**`{_$\|String}`*The current object or the value of the attribute* |
+
+```js
+// Examples
+let title = $('p').attr('title');
+$('p').attr('title', 'New title');
 ```
 
 ---
