@@ -58,6 +58,8 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.addClass(classes)**](#addClass) |
 
+| [**.after(...elements)**](#after) |
+
 ### Methods not included
 
 ### In-depth method definition
@@ -88,6 +90,20 @@ $('p').add(document.body);
 // Examples
 $('p').addClass('selected');
 $('p').addClass('selected blue bg');
+```
+
+---
+
+{:#after}
+| **.after(...content)** *Insert content after each element*                                              |
+|:--------------------------------------------------------------------------------------------------------|
+| `elements`*{Element\[\]\|NodeList\[\]\|Array\[\]\|String\[\]\|_$\[\]}* *Content to be inserted*         |
+| **Returns**`{_$}`*The current LightQuery object*       |
+
+```js
+// Examples
+$('p').after('div');
+$('p').after('<aside>See more</aside>');
 ```
 
 ---
