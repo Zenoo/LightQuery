@@ -67,6 +67,7 @@ Simply import `light-query.min.js` into your HTML.
   * **`.siblings()`**
   * **`.slice()`**
   * **`.text()`**
+  * **`.toggle()`**
 
 
 * **Not included**

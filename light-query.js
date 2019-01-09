@@ -330,7 +330,7 @@ class _$ extends Array{
 					item.style[parameter] = value;
 				});
 			}else{
-				return this[0].style[parameter];
+				return this[0].style[parameter] || getComputedStyle(this[0])[parameter];
 			}
 		// Object way
 		}else{
@@ -987,8 +987,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the horizontal scroll value of the first element or set the horizontal scroll value for each element
-	 * @param {Number} value The new horizontal scroll value
-	 * @returns {Number|_$} The horizontal scroll value of the first element or the current object
+	 * @param   {Number}    [value] The new horizontal scroll value
+	 * @returns {Number|_$}         The horizontal scroll value of the first element or the current object
 	 */
 	scrollLeft(value){
 		// Get
@@ -1007,8 +1007,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the vertical scroll value of the first element or set the vertical scroll value for each element
-	 * @param {Number} value The new horizontal scroll value
-	 * @returns {Number|_$} The horizontal scroll value of the first element or the current object
+	 * @param   {Number} [value] The new horizontal scroll value
+	 * @returns {Number|_$}      The horizontal scroll value of the first element or the current object
 	 */
 	scrollTop(value){
 		// Get
@@ -1105,8 +1105,8 @@ class _$ extends Array{
 
 	/**
 	 * Get/Set the text of each element
-	 * @param   {String|Function} value Text to set or Function returning the text to set
-	 * @returns {String|_$}             The text of each element or the current object
+	 * @param   {String|Function} [value] Text to set or Function returning the text to set
+	 * @returns {String|_$}               The text of each element or the current object
 	 */
 	text(value){
 		// Get
@@ -1117,6 +1117,31 @@ class _$ extends Array{
 		// Set
 		this.forEach(item => {
 			item.innerText = value;
+		});
+
+		return this;
+	}
+
+	/**
+	 * Toggle each element's display
+	 * @param   {Boolean} [force] `true` to show, `false` to hide
+	 * @returns {_$}              The current object
+	 */
+	toggle(force){
+		this.forEach(item => {
+			if(item.style){
+				if(force){
+					// eslint-disable-next-line camelcase
+					item.style.display = force ? __$_default_display_inline__[item.nodeName.toLowerCase()] ? 'inline' : 'block' : 'none';
+				}else if(item.style.display == 'none'){
+					item.style.display = '';
+				}else if(getComputedStyle(item).display == 'none'){
+					// eslint-disable-next-line camelcase
+					item.style.display = __$_default_display_inline__[item.nodeName.toLowerCase()] ? 'inline' : 'block';
+				}else{
+					item.style.display = 'none';
+				}
+			}
 		});
 
 		return this;
