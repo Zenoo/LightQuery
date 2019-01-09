@@ -73,6 +73,8 @@ Simply import `light-query.min.js` into your HTML.
   * **`.unwrap()`**
   * **`.val()`**
   * **`.width()`**
+  * **`.wrap()`**
+  * **`.wrapAll()`**
 
 
 * **Not included**

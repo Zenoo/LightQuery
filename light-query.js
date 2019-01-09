@@ -1251,6 +1251,40 @@ class _$ extends Array{
 
 		return this;
 	}
+
+	/**
+	 * Wrap all elements
+	 * @param   {String} wrapper The wrapper
+	 * @returns {_$}             The current object
+	 */
+	wrapAll(wrapper){
+		const
+			elementsBySiblings = [],
+			wrapperElements = _$._STD(wrapper);
+
+		if(wrapperElements.length){
+			// Group each element with its siblings
+			this.forEach(item => {
+				const siblingsIndex = elementsBySiblings.findIndex(groupedElements => [...item.parentElement.children].includes(groupedElements[0]));
+
+				if(siblingsIndex > -1) elementsBySiblings[siblingsIndex].push(item);
+				else elementsBySiblings.push([item]);
+			});
+
+			// Wrap each group
+			elementsBySiblings.forEach(group => {
+				const newClone = wrapperElements[0].cloneNode(true);
+				
+				group[0].insertAdjacentElement('afterend', newClone);
+
+				group.forEach(element => {
+					newClone.appendChild(element);
+				});
+			});
+		}
+
+		return this;
+	}
 }
 
 const $ = parameter => new _$(parameter);
