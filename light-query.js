@@ -143,9 +143,9 @@ class _$ extends Array{
 
 	/**
 	 * Add elements to the current _$ elements
-	 * @param   {Element|NodeList|Array|String} parameter Element(s) to add
-	 * @param   {Element}                       [context] Context of the potential query
-	 * @returns {_$}                                      The current object
+	 * @param   {Element|NodeList|Array|String|_$} parameter Element(s) to add
+	 * @param   {Element}                          [context] Context of the potential query
+	 * @returns {_$}                                         The current object
 	 */
 	add(parameter, context){
 		if(parameter instanceof _$){
@@ -1274,7 +1274,7 @@ class _$ extends Array{
 			// Wrap each group
 			elementsBySiblings.forEach(group => {
 				const newClone = wrapperElements[0].cloneNode(true);
-				
+
 				group[0].insertAdjacentElement('afterend', newClone);
 
 				group.forEach(element => {
