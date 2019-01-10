@@ -385,11 +385,11 @@ class _$ extends Array{
 
 	/**
 	 * Get the Nth element (a negative N starts counting from the end)
-	 * @param   {Number} position The element position
-	 * @returns {_$}              The Nth element's object
+	 * @param   {Number} index The element index
+	 * @returns {_$}           The Nth element's object
 	 */
-	eq(position){
-		return this.length ? new _$(this[position >= 0 ? position : this.length + position]) : null;
+	eq(index){
+		return this.length ? new _$(this[index >= 0 ? index : this.length + index]) : null;
 	}
 
 	/**

@@ -78,6 +78,16 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.contents()**](#contents) |
 
+| [**.css(parameter[, value])**](#css) |
+
+| [**.detach()**](#detach) |
+
+| [**.each(callback)**](#each) |
+
+| [**.empty()**](#empty) |
+
+| [**.eq(index)**](#eq) |
+
 ### Methods not included
 
 ### In-depth method definition
@@ -244,6 +254,77 @@ $('p').closest('aside');
 ```js
 // Example
 $('p').contents();
+```
+
+---
+
+{:#css}
+| **.css(parameter[, value])** *Set/Get one or more CSS properties* |
+|:---|
+| `parameter`*{String|Object}* *The CSS property name or an object containing every CSS properties to be changed* |
+| `value`*{String}* *The CSS property value* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').css('color', 'red');
+$('p').css('color');
+$('p').css({
+	color: 'blue',
+	opacity: .5
+});
+```
+
+---
+
+{:#detach}
+| **.detach()** *Remove each element from the DOM, to be reused later* |
+|:---|
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Example
+const forLaterUse = $('p').detach();
+```
+
+---
+
+{:#each}
+| **.each(callback)** *Iterate over each element<br>Inside this method, `this` corresponds to the current element* |
+|:---|
+| `callback`*{Function}* *The callback function* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Example
+$('p').each(function(){
+	$(this).whatever(); // ...
+});
+```
+
+---
+
+{:#empty}
+| **.empty()** *Remove all child nodes of each element* |
+|:---|
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Example
+$('p').empty();
+```
+
+---
+
+{:#eq}
+| **.eq(index)** *Get the Nth element (a negative N starts counting from the end)* |
+|:---|
+| `index`*{Number}* *The element index (zero-based)* |
+| **Returns**`{_$}`*The Nth element's LightQuery object* |
+
+```js
+// Example
+$('p').eq(0);
 ```
 
 ---
