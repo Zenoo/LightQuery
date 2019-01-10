@@ -44,6 +44,7 @@ Simply import `light-query.min.js` into your HTML.
   * **`.is()`**
   * **`$.ajax()`** *Uses [AjaxSender](https://github.com/Zenoo/ajax-sender)*
   * **`$.get()`** *$.ajax() shorthand for simple GET requests*
+  * **`$.insert()`**
   * **`.last()`**
   * **`.next()`**
   * **`.nextAll()`**

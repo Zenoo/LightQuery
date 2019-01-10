@@ -142,6 +142,24 @@ class _$ extends Array{
 	}
 
 	/**
+	 * Converts element(s) to a DocumentFragment
+	 * @param {Element[]} elements 
+	 * @returns {DocumentFragment}
+	 * @private
+	 */
+	static _toFragment(elements){
+		const
+			fragment = document.createDocumentFragment(),
+			elementArray = [...elements];
+
+		while(elementArray[0]){
+			fragment.appendChild(elementArray.shift());
+		}
+
+		return fragment;
+	}
+
+	/**
 	 * Add elements to the current _$ elements
 	 * @param   {Element|NodeList|Array|String|_$} parameter Element(s) to add
 	 * @param   {Element}                          [context] Context of the potential query
@@ -172,18 +190,15 @@ class _$ extends Array{
 
 	/**
 	 * Insert content after each element
-	 * @param  {Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be inserted
-	 * @returns {_$}                                                 The current object
+	 * @param  {Element|NodeList|Array|String|_$|Element[]|NodeList[]|Array[]|String[]|_$[]} elements Elements to be inserted
+	 * @returns {_$}                                                                                  The current object
 	 */
 	after(...elements){
 		this.forEach(item => {
-			elements.forEach(newElement => {
-				let previousElement = item;
+			let previousElement = item;
 
-				_$._STD(newElement).forEach(newSingleElement => {
-					previousElement.insertAdjacentElement('afterend', newSingleElement);
-					previousElement = newSingleElement;
-				});
+			elements.forEach(newElement => {
+				previousElement = _$.insert(newElement, 'after', previousElement);
 			});
 		});
 
@@ -198,7 +213,7 @@ class _$ extends Array{
 	append(...elements){
 		this.forEach(item => {
 			elements.forEach(newElement => {
-				item.append(..._$._STD(newElement));
+				_$.insert(newElement, 'end', item);
 			});
 		});
 
@@ -211,9 +226,7 @@ class _$ extends Array{
 	 * @returns {_$}                                       The current object
 	 */
 	appendTo(targets){
-		_$._STD(targets).forEach(target => {
-			target.append(...this);
-		});
+		_$.insert(this, 'end', targets);
 
 		return this;
 	}
@@ -248,10 +261,7 @@ class _$ extends Array{
 		this.forEach(item => {
 			// For each new element
 			elements.forEach(newElement => {
-				// For each single node from the new element
-				_$._STD(newElement).forEach(newSingleElement => {
-					item.insertAdjacentElement('beforebegin', newSingleElement);
-				});
+				_$.insert(newElement, 'before', item);
 			});
 		});
 
@@ -515,19 +525,43 @@ class _$ extends Array{
 	}
 
 	/**
+	 * Shorthand to insert an element relative to another
+	 * @param   {Element|NodeList|Array|String|_$} toInsert         The elements to insert
+	 * @param   {String}                           position         The position of the new elements
+	 * @param   {Element|NodeList|Array|String|_$} relativeElements The elements to position from
+	 * @returns {_$}                                                A new LightQuery object containing the inserted nodes
+	 */
+	static insert(toInsert, position, relativeElements){
+		const elements = [];
+
+		_$._STD(relativeElements).forEach(relative => {
+			const
+				newElements = _$._STD(toInsert),
+				newNode = _$._toFragment(newElements);
+
+			elements.push(...newElements);
+
+			if(position == 'before'){
+				relative.parentNode.insertBefore(newNode, relative);
+			}else if(position == 'start'){
+				relative.insertBefore(newNode, relative.firstChild);
+			}else if(position == 'end'){
+				relative.appendChild(newNode);
+			}else if(position == 'after'){
+				relative.parentNode.insertBefore(newNode, relative.nextElementSibling);
+			}
+		});
+
+		return new _$(elements);
+	}
+
+	/**
 	 * Insert each element after the target(s)
 	 * @param   {String|Element|_$|Element[]} target The target(s)
 	 * @returns {_$}                                 The current object
 	 */
 	insertAfter(target){
-		_$._STD(target).forEach(currentTarget => {
-			let previousElement = currentTarget;
-
-			this.forEach(item => {
-				previousElement.insertAdjacentElement('afterend', item);
-				previousElement = item;
-			});
-		});
+		_$.insert(this, 'after', target);
 
 		return this;
 	}
@@ -538,21 +572,7 @@ class _$ extends Array{
 	 * @returns {_$}                                 The current object
 	 */
 	insertBefore(target){
-		const targets = [];
-
-		if(target instanceof _$ || target instanceof Array){
-			targets.push(...target);
-		}else if(target instanceof Element){
-			targets.push(target);
-		}else{
-			targets.push(...document.querySelectorAll(target));
-		}
-
-		targets.forEach(currentTarget => {
-			this.forEach(item => {
-				currentTarget.insertAdjacentElement('beforebegin', item);
-			});
-		});
+		_$.insert(this, 'before', target);
 
 		return this;
 	}
@@ -851,11 +871,7 @@ class _$ extends Array{
 	 */
 	prepend(...elements){
 		this.forEach(item => {
-			elements.forEach(newElement => {
-				_$._STD(newElement).forEach(newSingleElement => {
-					item.insertAdjacentElement('beforebegin', newSingleElement);
-				});
-			});
+			_$.insert(elements.reduce((acc, element) => acc.add(element), new _$()), 'start', item);
 		});
 
 		return this;
@@ -867,11 +883,7 @@ class _$ extends Array{
 	 * @returns {_$}                                       The current object
 	 */
 	prependTo(targets){
-		_$._STD(targets).forEach(target => {
-			this.forEach(item => {
-				target.insertAdjacentElement('beforebegin', item);
-			});
-		});
+		_$.insert(this, 'start', targets);
 
 		return this;
 	}
@@ -963,13 +975,8 @@ class _$ extends Array{
 	 */
 	replaceWith(newContent){
 		this.forEach(item => {
-			const newFragment = document.createDocumentFragment();
-
-			_$._STD(newContent).forEach(newSingleContent => {
-				newFragment.appendChild(newSingleContent);
-			});
-
-			item.parentElement.replaceChild(newFragment, item);
+			_$.insert(newContent, 'before', item);
+			item.remove();
 		});
 
 		return this;
@@ -1171,21 +1178,9 @@ class _$ extends Array{
 	 * @returns {_$}                The current object
 	 */
 	unwrap(selector){
-		const parents = new Set();
-
-		this.forEach(item => {
-			parents.add(item.parentElement);
-		});
-
-		parents.forEach(parent => {
+		this.reduce((acc, item) => acc.add(item.parentNode), new Set()).forEach(parent => {
 			if(!selector || parent.matches(selector)){
-				const children = document.createDocumentFragment();
-
-				while(parent.firstChild){
-					children.appendChild(parent.removeChild(parent.firstChild));
-				}
-
-				parent.parentElement.replaceChild(children, parent);
+				parent.parentElement.replaceChild(_$._toFragment(parent.childNodes), parent);
 			}
 		});
 
@@ -1221,22 +1216,18 @@ class _$ extends Array{
 
 	/**
 	 * Wrap each element
-	 * @param   {String} wrapper The wrapper
-	 * @returns {_$}             The current object
+	 * @param   {Element|NodeList|Array|String|Document|Window|_$} wrapper The wrapper
+	 * @returns {_$}                                                       The current object
 	 */
 	wrap(wrapper){
 		this.forEach(item => {
-			const
-				newNode = document.createDocumentFragment(),
-				wrapperElements = _$._STD(wrapper);
+			const wrapperElements = _$._STD(wrapper);
 
 			if(wrapperElements.length){
-				const newClone = wrapperElements[0].cloneNode(true);
+				const newWrapper = wrapperElements[0].cloneNode(true);
 
-				newNode.appendChild(newClone);
-				newClone.appendChild(item.cloneNode(true));
-				
-				item.parentElement.replaceChild(newNode, item);
+				_$.insert(newWrapper, 'after', item);
+				_$.insert(item, 'start', newWrapper);
 			}
 		});
 
@@ -1266,11 +1257,8 @@ class _$ extends Array{
 			elementsBySiblings.forEach(group => {
 				const newClone = wrapperElements[0].cloneNode(true);
 
-				group[0].insertAdjacentElement('afterend', newClone);
-
-				group.forEach(element => {
-					newClone.appendChild(element);
-				});
+				_$.insert(newClone, 'before', group[0]);
+				_$.insert(group, 'start', newClone);
 			});
 		}
 
@@ -1282,3 +1270,4 @@ const $ = parameter => new _$(parameter);
 
 $.ajax = _$.ajax;
 $.get = _$.get;
+$.insert = _$.insert;
