@@ -525,7 +525,7 @@ class _$ extends Array{
 	}
 
 	/**
-	 * Shorthand to insert an element relative to another
+	 * Shorthand to insert element(s) relative to other(s)
 	 * @param   {Element|NodeList|Array|String|_$} toInsert         The elements to insert
 	 * @param   {String}                           position         The position of the new elements
 	 * @param   {Element|NodeList|Array|String|_$} relativeElements The elements to position from

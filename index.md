@@ -108,6 +108,8 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.index()**](#index) |
 
+| __NEW !__ [**$.insert(toInsert, position, relativeElements)**](#_insert) |
+
 | [**.insertAfter(target)**](#insertAfter) |
 
 ### Methods not included
@@ -479,7 +481,22 @@ $('p').html(`
 {:#index}
 | **.index()** *Get the first element's index in relation to its siblings* |
 |:---|
-| **Returns**`{_$}`*The index* |
+| **Returns**`{Number}`*The index* |
+
+```js
+// Example
+const elementIndex = $('p').index();
+```
+
+---
+
+{:#_insert}
+| **$.insert(toInsert, position, relativeElements)** *Shorthand to insert element(s) relative to other(s)* |
+|:---|
+| `toInsert`*{Element\|NodeList\|Array\|String\|_$}* *The element(s) to insert* |
+| `position`*{String}* *The position of the new element(s)* **Possible values: ** `before\|start\|end\|after` |
+| `relativeElements`*{Element\|NodeList\|Array\|String\|_$}* *The element(s) to position from* |
+| **Returns**`{_$}`* new LightQuery object containing the inserted nodes* |
 
 ```js
 // Example
