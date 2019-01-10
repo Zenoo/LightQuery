@@ -1,3 +1,12 @@
+### Version 1.1.0 - 2019-01-10
+- Removed useless !! in .clone() (Zenoo)
+- Updated .contents() return type (Zenoo)
+- Renamed .eq() argument (Zenoo)
+- API doc <= .find() (Zenoo)
+- Updated .html() inner doc (origin/master) (Zenoo)
+- Refractored .insertAfter() (Zenoo)
+- Refractored insertion mechanic (Zenoo)
+
 ### Version 1.0.2 - 2019-01-09
 - Set theme jekyll-theme-cayman (Zenoo)
 - Github theme test (Zenoo)
