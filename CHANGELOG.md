@@ -1,3 +1,9 @@
+### Version 1.2.2 - 2019-01-10
+- Updated lib size in doc (Zenoo)
+- Added favicon (Zenoo)
+- Fixed broken changelog (origin/master) (Zenoo)
+- Updated README (Zenoo)
+
 ### Version 1.2.0 - 2019-01-10
 - docu .insert() (Zenoo)
 - Typo fix (Zenoo)
