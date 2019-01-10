@@ -27,10 +27,8 @@ table{
 				font-size: 0.8em;
 				font-weight: 200;
 			}
-		}
 
-		&:last-of-type{
-			td>strong{
+			&>strong{
 				font-size: 0.8em;
 			}
 		}

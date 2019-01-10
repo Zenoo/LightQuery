@@ -58,13 +58,21 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.addClass(classes)**](#addClass) |
 
-| [**.after(...elements)**](#after) |
+| [**.after(...content)**](#after) |
 
-| [**.append(...elements)**](#append) |
+| [**.append(...content)**](#append) |
 
 | [**.appendTo(targets)**](#appendTo) |
 
 | [**.attr(name[, value])**](#attr) |
+
+| [**.before(...content)**](#before) |
+
+| [**.blur()**](#blur) |
+
+| [**.children([selector])**](#children) |
+
+| [**.clone([deep])**](#clone) |
 
 ### Methods not included
 
@@ -147,12 +155,66 @@ $('<aside>See more</aside>').appendTo('p');
 |:---|
 | `name`*{String}* *The attribute name* |
 | `value`*{String\|Number\|null}* *The attribute value* |
-| **Returns**`{_$\|String}`*The current object or the value of the attribute* |
+| **Returns**`{_$\|String}`*The current LightQuery object or the value of the attribute* |
 
 ```js
 // Examples
 let title = $('p').attr('title');
 $('p').attr('title', 'New title');
+```
+
+---
+
+{:#before}
+| **.before(...content)** *Insert content before each element* |
+|:---|
+| `content`*{Element\[\]\|\NodeList\[\]\|Array\[\]\|String\[\]\|_$\[\]}* *Content to be inserted* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').before('div');
+$('p').before('<aside>See more</aside>');
+```
+
+---
+
+{:#blur}
+| **.blur()** *Force the focus out of each element* |
+|:---|
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Example
+$('p').blur();
+```
+
+---
+
+{:#children}
+| **.children([selector])** *Get the children of each element* |
+|:---|
+| `selector`*{String}* *An optional filter* |
+| **Returns**`{_$}`*The current LightQuery object's children* |
+
+```js
+// Examples
+$('p').children();
+$('p').children('span');
+```
+
+---
+
+{:#clone}
+| **.clone([deep])** *Clone each element* |
+|:---|
+| `deep`*{Boolean}* *Deep clone the elements ?* **Default:** `true`|
+| **Returns**`{_$}`*A clone of the previous LightQuery object* |
+
+```js
+// Examples
+let clone = $('p').clone();
+let shallowClone = $('p').clone(false);
 ```
 
 ---

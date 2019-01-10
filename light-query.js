@@ -289,10 +289,11 @@ class _$ extends Array{
 
 	/**
 	 * Clone each element
-	 * @param {Boolean}      [deep=true] Deep clone the elements ?
+	 * @param   {Boolean}      [deep=true] Deep clone the elements ?
+	 * @returns {_$}                       A clone of the previous object
 	 */
-	clone(deep){
-		return new _$(this.map(item => item.cloneNode(!!deep)));
+	clone(deep=true){
+		return new _$(this.map(item => item.cloneNode(deep)));
 	}
 
 	/**
