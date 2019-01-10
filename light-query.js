@@ -942,13 +942,13 @@ class _$ extends Array{
 	}
 
 	/**
-	 * Remove class(es) to each element
-	 * @param   {String} parameter Space separated classes to add
-	 * @returns {_$}                        The current object
+	 * Remove class(es) from each element
+	 * @param   {String} classes Space separated classes to remove
+	 * @returns {_$}             The current object
 	 */
-	removeClass(parameter){
+	removeClass(classes){
 		this.forEach(item => {
-			item.classList.remove(...parameter.split(/\s+/));
+			item.classList.remove(...classes.split(/\s+/));
 		});
 
 		return this;
@@ -956,8 +956,8 @@ class _$ extends Array{
 
 	/**
 	 * Replace each target with each element
-	 * @param   {Element|NodeList|Array|String} targets The targets
-	 * @returns {_$}                                    The current object
+	 * @param   {Element|NodeList|Array|String|_$} targets The targets
+	 * @returns {_$}                                       The current object
 	 */
 	replaceAll(targets){
 		_$._STD(targets).forEach(target => {
@@ -1004,8 +1004,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the vertical scroll value of the first element or set the vertical scroll value for each element
-	 * @param   {Number} [value] The new horizontal scroll value
-	 * @returns {Number|_$}      The horizontal scroll value of the first element or the current object
+	 * @param   {Number} [value] The new vertical scroll value
+	 * @returns {Number|_$}      The vertical scroll value of the first element or the current object
 	 */
 	scrollTop(value){
 		// Get
@@ -1127,7 +1127,7 @@ class _$ extends Array{
 	toggle(force){
 		this.forEach(item => {
 			if(item.style){
-				if(force){
+				if(typeof force !== 'undefined'){
 					// eslint-disable-next-line camelcase
 					item.style.display = force ? __$_default_display_inline__[item.nodeName.toLowerCase()] ? 'inline' : 'block' : 'none';
 				}else if(item.style.display == 'none'){
@@ -1146,12 +1146,12 @@ class _$ extends Array{
 
 	/**
 	 * Toggle class(es) for each element
-	 * @param   {String} parameter Space separated classes to toggle
-	 * @returns {_$}               The current object
+	 * @param   {String} classes Space separated classes to toggle
+	 * @returns {_$}             The current object
 	 */
-	toggleClass(parameter){
+	toggleClass(classes){
 		this.forEach(item => {
-			parameter.split(/\s+/).forEach(className => {
+			classes.split(/\s+/).forEach(className => {
 				item.classList.toggle(className);
 			});
 		});
@@ -1216,8 +1216,8 @@ class _$ extends Array{
 
 	/**
 	 * Wrap each element
-	 * @param   {Element|NodeList|Array|String|Document|Window|_$} wrapper The wrapper
-	 * @returns {_$}                                                       The current object
+	 * @param   {Element|NodeList|Array|String|_$} wrapper The wrapper
+	 * @returns {_$}                                       The current object
 	 */
 	wrap(wrapper){
 		this.forEach(item => {
@@ -1236,8 +1236,8 @@ class _$ extends Array{
 
 	/**
 	 * Wrap all elements
-	 * @param   {String} wrapper The wrapper
-	 * @returns {_$}             The current object
+	 * @param   {Element|NodeList|Array|String|_$} wrapper The wrapper
+	 * @returns {_$}                                       The current object
 	 */
 	wrapAll(wrapper){
 		const

@@ -140,7 +140,55 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.prepend(...elements)**](#prepend) |
 
+| [**.prependTo(targets)**](#prependTo) |
+
+| [**.prev([selector])**](#prev) |
+
+| [**.prevAll([selector])**](#prevAll) |
+
+| [**.remove()**](#remove) |
+
+| [**.removeAttr(attribute)**](#removeAttr) |
+
+| [**.removeClass(classes)**](#removeClass) |
+
+| [**.replaceAll(targets)**](#replaceAll) |
+
+| [**.replaceWith(newContent)**](#replaceWith) |
+
+| [**.scrollLeft([value])**](#scrollLeft) |
+
+| [**.scrollTop([value])**](#scrollTop) |
+
+| [**.serialize()**](#serialize) |
+
+| [**.serializeArray()**](#serializeArray) |
+
+| [**.show()**](#show) |
+
+| [**.siblings([selector])**](#siblings) |
+
+| [**.text([value])**](#text) |
+
+| [**.toggle([force])**](#toggle) |
+
+| [**.toggleClass(classes)**](#toggleClass) |
+
+| [**.trigger(eventName)**](#trigger) |
+
+| [**.unwrap([selector])**](#unwrap) |
+
+| [**.val([value])**](#val) |
+
+| [**.width()**](#width) |
+
+| [**.wrap(wrapper)**](#wrap) |
+
+| [**.wrapAll(wrapper)**](#wrapAll) |
+
 ### Methods not included
+
+| **.addBack()** *Use more appropriate selectors instead* |
 
 ### In-depth method definition
 
@@ -749,10 +797,10 @@ const {
 ```js
 // Examples
 $('p').on('click', function(){
-	console.log($(this));
+  console.log($(this));
 });
 $('p').on('click', 'span', function(){
-	console.log($(this));
+  console.log($(this));
 });
 ```
 
@@ -794,6 +842,324 @@ $('p').parents();
 // Examples
 $('p').prepend('<em>Example</em>');
 $('p').prepend('span.red');
+```
+
+---
+
+{:#prependTo}
+| **.prependTo(targets)** *Prepend each element before the targets* |
+|:---|
+| `targets`*{Element\|NodeList\|Array\|String\|_$}* *Elements to be prepended to* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').prependTo('div');
+$('p').prependTo(section);
+```
+
+---
+
+{:#prev}
+| **.prev([selector])** *Get previous immediate sibling. If a selector is provided, doesn't return the sibling if it doesn't match* |
+|:---|
+| `selector`*{String}* *The sibling selector* |
+| **Returns**`{_$}`*The previous immediate sibling LightQuery object* |
+
+```js
+// Examples
+$('p').prev();
+$('p').prev('ul');
+```
+
+---
+
+{:#prevAll}
+| **.prevAll([selector])** *Get previous siblings. If a selector is provided, doesn't return the siblings if they don't match* |
+|:---|
+| `selector`*{String}* *The siblings selector* |
+| **Returns**`{_$}`*The previous siblings LightQuery object* |
+
+```js
+// Examples
+$('p').prevAll();
+$('p').prevAll('ul');
+```
+
+---
+
+{:#remove}
+| **.remove()** *Remove each element from the DOM* |
+|:---|
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Example
+$('p').remove();
+```
+
+---
+
+{:#removeAttr}
+| **.removeAttr(attribute)** *Remove an attribute from each element* |
+|:---|
+| `attribute`*{String}* *Attribute name* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Example
+$('p').removeAttr('title');
+```
+
+---
+
+{:#removeClass}
+| **.removeClass(classes)** *Remove class(es) from each element* |
+|:---|
+| `classes`*{String}* *Space separated classes to remove* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').removeClass('red');
+$('p').removeClass('blue flash');
+```
+
+---
+
+{:#replaceAll}
+| **.replaceAll(targets)** *Replace each target with each element* |
+|:---|
+| `targets`*{Element\|NodeList\|Array\|String\|_$}* *The targets* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p.new').replaceAll('p.old');
+$('<p>New content</p>').replaceAll('p');
+```
+
+---
+
+{:#replaceWith}
+| **.replaceWith(newContent)** *Replace each element with the new content* |
+|:---|
+| `newContent`*{Element\|NodeList\|Array\|String\|_$}* *The new content* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p.old').replaceWith('p.new');
+$('p').replaceWith('<p>New content</p>');
+```
+
+---
+
+{:#scrollLeft}
+| **.scrollLeft([value])** *Get the horizontal scroll value of the first element or set the horizontal scroll value for each element* |
+|:---|
+| `value`*{Number}* *The new horizontal scroll value* |
+| **Returns**`{Number\|_$}`*The horizontal scroll value of the first element or the current LightQuery object* |
+
+```js
+// Examples
+$('p').scrollLeft();
+$('p').scrollLeft(420);
+```
+
+---
+
+{:#scrollTop}
+| **.scrollTop([value])** *Get the vertical scroll value of the first element or set the vertical scroll value for each element* |
+|:---|
+| `value`*{Number}* *The new vertical scroll value* |
+| **Returns**`{Number\|_$}`*The vertical scroll value of the first element or the current LightQuery object* |
+
+```js
+// Examples
+$('p').scrollTop();
+$('p').scrollTop(420);
+```
+
+---
+
+{:#serialize}
+| **.serialize()** *Encode each form element as a string* |
+|:---|
+| **Returns**`{String}`*The serialized value of each element* |
+
+```js
+// Examples
+$('form').serialize();
+$('input').serialize();
+```
+
+---
+
+{:#serializeArray}
+| **.serializeArray()** *Encode each form element as an array of names and values* |
+|:---|
+| **Returns**`{Object[]}`*An array of names and values* |
+
+```js
+// Examples
+$('form').serializeArray();
+$('input').serializeArray();
+```
+
+---
+
+{:#show}
+| **.show()** *Show each element* |
+|:---|
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Example
+$('p').show();
+```
+
+---
+
+{:#siblings}
+| **.siblings([selector])** *Get all siblings. If a selector is provided, doesn't return the siblings if they don't match* |
+|:---|
+| `selector`*{String}* *The sibling selector* |
+| **Returns**`{_$}`*The siblings LightQuery object* |
+
+```js
+// Examples
+$('p').siblings();
+$('p').siblings('div');
+```
+
+---
+
+{:#text}
+| **.text([value])** *Get/Set the text of each element* |
+|:---|
+| `value`*{String\|Function}* *Text to set or Function returning the text to set* |
+| **Returns**`{String\|_$}`*The text of each element or the current LightQuery object* |
+
+```js
+// Examples
+$('p').text();
+$('p').text('Example');
+$('p').text(function(){
+  return 'Example ' + this.id;
+});
+```
+
+---
+
+{:#toggle}
+| **.toggle([force])** *Toggle each element's display* |
+|:---|
+| `force`*{Boolean}* *True to show, False to hide* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').toggle();
+$('p').toggle(true);
+$('p').toggle(false);
+```
+
+---
+
+{:#toggleClass}
+| **.toggleClass(classes)** *Toggle class(es) for each element* |
+|:---|
+| `classes`*{String}* *Space separated classes to toggle* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').toggleClass('red');
+$('p').toggleClass('blue flash');
+```
+
+---
+
+{:#trigger}
+| **.trigger(eventName)** *Trigger an event for each element* |
+|:---|
+| `eventName`*{String}* *Event name* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Example
+$('p').trigger('click');
+```
+
+---
+
+{:#unwrap}
+| **.unwrap([selector])** *Remove the direct parents of each element, if they match the selector* |
+|:---|
+| `selector`*{String}* *The parent selector* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').unwrap();
+$('p').unwrap('div');
+```
+
+---
+
+{:#val}
+| **.val([value])** *Get the value of the first element or set the value of each element* |
+|:---|
+| `value`*{Object}* *The value to set* |
+| **Returns**`{String\|_$}`*The value of the first element or the current LightQuery object* |
+
+```js
+// Examples
+$('#email').val();
+$('#email').val('what@ev.er');
+```
+
+---
+
+{:#width}
+| **.width()** *Get the computed width of the first element* |
+|:---|
+| **Returns**`{Number}`*The computed width of the first element (px)* |
+
+```js
+// Example
+const width = $('div').width();
+```
+
+---
+
+{:#wrap}
+| **.wrap(wrapper)** *Wrap each element* |
+|:---|
+| `wrapper`*{Element\|NodeList\|Array\|String\|_$}* *The wrapper* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').wrap('<div></div>');
+$('p').wrap('section');
+$('p').wrap(section);
+```
+
+---
+
+{:#wrapAll}
+| **.wrapAll(wrapper)** *Wrap all elements* |
+|:---|
+| `wrapper`*{Element\|NodeList\|Array\|String\|_$}* *The wrapper* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').wrapAll('<div></div>');
+$('p').wrapAll('section');
+$('p').wrapAll(section);
 ```
 
 ---
