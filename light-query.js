@@ -557,8 +557,8 @@ class _$ extends Array{
 
 	/**
 	 * Insert each element after the target(s)
-	 * @param   {String|Element|_$|Element[]} target The target(s)
-	 * @returns {_$}                                 The current object
+	 * @param   {Element|NodeList|Array|String|_$} target The target(s)
+	 * @returns {_$}                                      The current object
 	 */
 	insertAfter(target){
 		_$.insert(this, 'after', target);
@@ -567,9 +567,9 @@ class _$ extends Array{
 	}
 
 	/**
-	 * Insert each element before the target
-	 * @param   {String|Element|_$|Element[]} target The target
-	 * @returns {_$}                                 The current object
+	 * Insert each element before the target(s)
+	 * @param   {Element|NodeList|Array|String|_$} target The target(s)
+	 * @returns {_$}                                      The current object
 	 */
 	insertBefore(target){
 		_$.insert(this, 'before', target);
@@ -579,7 +579,7 @@ class _$ extends Array{
 
 	/**
 	 * Check if at least one of the elements matches the target
-	 * @param   {String|Function|Element|_$} target The target
+	 * @param   {String|Function|Element|_$} target The target or Function to match against
 	 * @returns {Boolean}                           `true` if at least one of the elements matches the target, `false` otherwise
 	 */
 	is(target){

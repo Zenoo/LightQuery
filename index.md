@@ -108,9 +108,14 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.index()**](#index) |
 
-| __NEW !__ [**$.insert(toInsert, position, relativeElements)**](#insert) |
-
 | [**.insertAfter(target)**](#insertAfter) |
+
+| [**.insertBefore(target)**](#insertBefore) |
+
+| [**.is(target)**](#is) |
+
+
+| __NEW !__ [**$.insert(toInsert, position, relativeElements)**](#insert) |
 
 ### Methods not included
 
@@ -490,26 +495,58 @@ const elementIndex = $('p').index();
 
 ---
 
+{:#insertAfter}
+| **.insertAfter(target)** *Insert each element after the target(s)* |
+|:---|
+| `target`*{Element\|NodeList\|Array\|String\|_$}* *The target(s)* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').insertAfter('aside');
+$('p').insertAfter(section);
+```
+
+---
+
+{:#insertBefore}
+| **.insertBefore(target)** *Insert each element before the target(s)* |
+|:---|
+| `target`*{Element\|NodeList\|Array\|String\|_$}* *The target(s)* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').insertBefore('aside');
+$('p').insertBefore(section);
+```
+
+---
+
+{:#is}
+| **.is(target)** *Check if at least one of the elements matches the target* |
+|:---|
+| `target`*{String\|Function\|Element\|_$}* *The target or Function to match against* |
+| **Returns**`{Boolean}`*True if at least one of the elements matches the target, False otherwise* |
+
+```js
+// Examples
+$('p').is('.red');
+$('p').is(function(){
+	return $(this).hasClass('red');
+});
+$('p').is(p => $(p).hasClass('red'));
+```
+
+---
+
 {:#insert}
 | **$.insert(toInsert, position, relativeElements)** *Shorthand to insert element(s) relative to other(s)* |
 |:---|
 | `toInsert`*{Element\|NodeList\|Array\|String\|_$}* *The element(s) to insert* |
 | `position`*{String}* *The position of the new element(s)* **Possible values:** `before|start|end|after` |
 | `relativeElements`*{Element\|NodeList\|Array\|String\|_$}* *The element(s) to position from* |
-| **Returns**`{_$}`* new LightQuery object containing the inserted nodes* |
-
-```js
-// Example
-const elementIndex = $('p').index();
-```
-
----
-
-{:#insertAfter}
-| **.insertAfter(target)** *Get the first element's index in relation to its siblings* |
-|:---|
-| `html`*{String}* *The HTML to set* |
-| **Returns**`{_$}`*The index* |
+| **Returns**`{_$}`*A new LightQuery object containing the inserted nodes* |
 
 ```js
 // Example
