@@ -128,6 +128,18 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.not(target)**](#not) |
 
+| [**.off(events[, selector, handler])**](#off) |
+
+| [**.offset()**](#offset) |
+
+| [**.on(events[, selector], handler[, data])**](#on) |
+
+| [**.parent([selector])**](#parent) |
+
+| [**.parents([selector])**](#parents) |
+
+| [**.prepend(...elements)**](#prepend) |
+
 ### Methods not included
 
 ### In-depth method definition
@@ -684,6 +696,104 @@ $('p').not(function(){
 	return !$(this).hasClass('blue');
 });
 $('p').not(p => !$(p).hasClass('blue'));
+```
+
+---
+
+{:#off}
+| **.off(events[, selector, handler])** *Remove an event handler* |
+|:---|
+| `events`*{String}* *The events to stop listening to* |
+| `selector`*{String}* *The selector matching the one used with [`.on()`](#on)* |
+| `handler`*{Function}* *The handler used with [`.on()`](#on)* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').off('click');
+$('p').off('click dblclick');
+$('p').off('click', 'span');
+$('p').off('click', 'span', e => {
+  ...
+});
+```
+
+---
+
+{:#offset}
+| **.offset()** *Get the coordinates of the first element* |
+|:---|
+| **Returns**`{DOMRect}`*Object containing the coordinates of the first element. **Use .left, .top*** |
+
+```js
+// Examples
+const left = $('p').offset().left;
+const top = $('p').offset().top;
+const {
+  left: leftOffset,
+  top: topOffset
+} = $('p').offset();
+```
+
+---
+
+{:#on}
+| **.on(events[, selector], handler[, data])** *Add an event handler* |
+|:---|
+| `events`*{String}* *The events to start listening to* |
+| `selector`*{String}* *The selector used for event delegation* |
+| `handler`*{Function}* *The handler for the event(s)* |
+| `data`*{Object}* *The data to be passed the the handler* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').on('click', function(){
+	console.log($(this));
+});
+$('p').on('click', 'span', function(){
+	console.log($(this));
+});
+```
+
+---
+
+{:#parent}
+| **.parent([selector])** *Get the parent of each element. If a selector is passed, filter those parents* |
+|:---|
+| `selector`*{String}* *The parent selector* |
+| **Returns**`{_$}`*The parent(s)' LightQuery object* |
+
+```js
+// Example
+$('p').parent();
+```
+
+---
+
+{:#parents}
+| **.parent([selector])** *Get the ancestors of each element. If a selector is passed, filter those parents* |
+|:---|
+| `selector`*{String}* *The parents selector* |
+| **Returns**`{_$}`*The parent(s)' LightQuery object* |
+
+```js
+// Example
+$('p').parents();
+```
+
+---
+
+{:#prepend}
+| **.prepend(...elements)** *Prepend content to the end of each element* |
+|:---|
+| `elements`*{Element\[\]\|NodeList\[\]\|Array\[\]\|String\[\]\|_$\[\]}* *Elements to be prepended* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+$('p').prepend('<em>Example</em>');
+$('p').prepend('span.red');
 ```
 
 ---
