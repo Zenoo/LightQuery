@@ -27,7 +27,7 @@
 - Edited method layout (Zenoo)
 - markdown style customization (Zenoo)
 - Fixed custom CSS (Zenoo)
-- Swapped <i> for <em> (Zenoo)
+- Swapped &lt;i&gt; for &lt;em&gt; (Zenoo)
 - Newline after arguments (Zenoo)
 - Split method documentation in two (Zenoo)
 - Link on table doc (Zenoo)
