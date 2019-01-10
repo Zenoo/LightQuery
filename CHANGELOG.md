@@ -1,3 +1,12 @@
+### Version 1.2.0 - 2019-01-10
+- docu .insert() (Zenoo)
+- Typo fix (Zenoo)
+- API doc <= .is() (Zenoo)
+- API doc update (Zenoo)
+- API doc <= .prepend() (Zenoo)
+- Finished API doc (Zenoo)
+- Added unsupported methods (Zenoo)
+
 ### Version 1.1.0 - 2019-01-10
 - Removed useless !! in .clone() (Zenoo)
 - Updated .contents() return type (Zenoo)
