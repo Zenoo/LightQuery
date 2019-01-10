@@ -1,6 +1,8 @@
-# LightQuery
+# LightQuery - 10 times smaller than jQuery (90kB => 9kB)
 
-A lightweight jQuery alternative.
+This is a complete rewrite of the well-known jQuery library.
+
+Every method has been rewritten or replaced by another method.
 
 ### Doc
 
@@ -8,12 +10,49 @@ See the [documentation](https://zenoo.github.io/LightQuery/) for more
 
 * **Installation**
 
-Simply import `light-query.min.js` into your HTML.
+Simply import `light-query.min.js` into your HTML by downloading it or using a CDN.
 ```
 <script src="https://gitcdn.link/repo/Zenoo/LightQuery/master/light-query.min.js"></script>	
 ```
 
+* **Usage**
+
+* Initialize your object like you would in jQuery using `$`:
+
+```js
+$(selector[, context])
+
+// Example
+let elements = $('yo.ur[selec="tor"]');
+let elementsWithContext = $('yo.ur[selec="tor"]', section);
+```
+
+* If you need to wait for the document to be loaded, use:
+
+```js
+$(() => {
+  // The document is loaded here
+});
+
+// OR
+
+$(function(){
+  // The document is loaded here
+});
+```
+
+* The `LightQuery` object extend the native `Array` object, so you can use all of its methods/properties.
+
+```js
+// Examples
+$('p').length;
+$('p')[0];
+$('p').map(...);
+```
+
 * **Methods**
+
+The full API documentation is available on [https://zenoo.github.io/LightQuery/](https://zenoo.github.io/LightQuery/).
 
   * **`.add()`**
   * **`.addClass()`**
