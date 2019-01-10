@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# LightQuery - 9 times smaller than jQuery (90kB => 10kB)
+# LightQuery - 10 times smaller than jQuery (90kB => 9kB)
 
 This is a complete rewrite of the well-known jQuery library.
 
