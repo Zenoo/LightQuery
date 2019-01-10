@@ -459,8 +459,8 @@ class _$ extends Array{
 	}
 
 	/**
-	 * Determine if an element contains the given class
-	 * @param   {String} classname The class name
+	 * Determine if at least one element contains the given class
+	 * @param   {String} className The class name
 	 * @returns {Boolean}          `true` if an element contains the class, `false` otherwise
 	 */
 	hasClass(className){
@@ -489,8 +489,8 @@ class _$ extends Array{
 
 	/**
 	 * Get the HTML of the first element or Set each element's HTML
-	 * @param   {String} html The HTML to set
-	 * @returns {_$}          The current object
+	 * @param   {String} [html] The HTML to set
+	 * @returns {_$}            The current object
 	 */
 	html(html){
 		// Get

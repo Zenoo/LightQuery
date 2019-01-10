@@ -92,6 +92,20 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.find(selector)**](#find) |
 
+| [**.first()**](#first) |
+
+| [**.get([index])**](#get) |
+
+| [**.has(parameter)**](#has) |
+
+| [**.hasClass(className)**](#hasClass) |
+
+| [**.height()**](#height) |
+
+| [**.hide()**](#hide) |
+
+| [**.html([html])**](#html) |
+
 ### Methods not included
 
 ### In-depth method definition
@@ -359,6 +373,101 @@ $('p').filter(element => $(element).hasClass('red'));
 ```js
 // Example
 $('p').find('span');
+```
+
+---
+
+{:#first}
+| **.first()** *Get the first element* |
+|:---|
+| **Returns**`{_$}`*The first element's LightQuery object* |
+
+```js
+// Example
+$('p').first();
+```
+
+---
+
+{:#get}
+| **.get([index])** *Get one or every element* |
+|:---|
+| `index`*{Number}* *The element index (null to get every element)* |
+| **Returns**`{Element\|Element\[\]}`*The requested element(s)* |
+
+```js
+// Examples
+$('p').get();
+$('p').get(0);
+```
+
+---
+
+{:#has}
+| **.has(parameter)** *Reduce the elements based on a descendant selector or descendant element* |
+|:---|
+| `parameter`*{String\|Element}* *The selector or element to reduce with* |
+| **Returns**`{_$}`*The corresponding elements' LightQuery object* |
+
+```js
+// Examples
+$('p').has('span');
+$('p').has(specificSpan);
+```
+
+---
+
+{:#hasClass}
+| **.hasClass(className)** *Determine if at least one element contains the given class* |
+|:---|
+| `className`*{String}* *The class name* |
+| **Returns**`{Boolean}`*True if an element contains the class, False otherwise* |
+
+```js
+// Example
+$('p').hasClass('red');
+```
+
+---
+
+{:#height}
+| **.height()** *Get the computed height of the first element* |
+|:---|
+| **Returns**`{Number}`*The computed height of the first element (px)* |
+
+```js
+// Example
+const height = $('p').height();
+```
+
+---
+
+{:#hide}
+| **.hide()** *Hide each element* |
+|:---|
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Example
+$('p').hide();
+```
+
+---
+
+{:#html}
+| **.html([html])** *Get the HTML of the first element or Set each element's HTML* |
+|:---|
+| `html`*{String}* *The HTML to set* |
+| **Returns**`{_$}`*The current LightQuery object* |
+
+```js
+// Examples
+const html = $('p').html();
+$('p').html(`
+	<span>This</span>
+	is
+	<em>an example.</em>
+`);
 ```
 
 ---
