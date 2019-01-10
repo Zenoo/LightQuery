@@ -74,6 +74,10 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.clone([deep])**](#clone) |
 
+| [**.closest(selector)**](#closest) |
+
+| [**.contents()**](#contents) |
+
 ### Methods not included
 
 ### In-depth method definition
@@ -215,6 +219,31 @@ $('p').children('span');
 // Examples
 let clone = $('p').clone();
 let shallowClone = $('p').clone(false);
+```
+
+---
+
+{:#closest}
+| **.closest(selector)** *Get the closest (self-included) parent matching the selector for each element* |
+|:---|
+| `selector`*{String}* *The selector* |
+| **Returns**`{_$}`*A new LightQuery object* |
+
+```js
+// Example
+$('p').closest('aside');
+```
+
+---
+
+{:#contents}
+| **.contents()** *Get the children of each element (including text nodes)* |
+|:---|
+| **Returns**`{_$}`*A LightQuery object containing the child nodes* |
+
+```js
+// Example
+$('p').contents();
 ```
 
 ---

@@ -307,14 +307,14 @@ class _$ extends Array{
 
 	/**
 	 * Get the children of each element (including text nodes)
-	 * @returns {Element[]} The child nodes
+	 * @returns {_$} A LightQuery object containing the child nodes
 	 */
 	contents(){
-		return this.reduce((acc, item) => {
+		return new _$(this.reduce((acc, item) => {
 			acc.push(...item.childNodes);
 
 			return acc;
-		}, []);
+		}, []));
 	}
 
 	/**
