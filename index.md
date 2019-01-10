@@ -88,6 +88,10 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.eq(index)**](#eq) |
 
+| [**.filter(parameter)**](#filter) |
+
+| [**.find(selector)**](#find) |
+
 ### Methods not included
 
 ### In-depth method definition
@@ -261,7 +265,7 @@ $('p').contents();
 {:#css}
 | **.css(parameter[, value])** *Set/Get one or more CSS properties* |
 |:---|
-| `parameter`*{String|Object}* *The CSS property name or an object containing every CSS properties to be changed* |
+| `parameter`*{String\|Object}* *The CSS property name or an object containing every CSS properties to be changed* |
 | `value`*{String}* *The CSS property value* |
 | **Returns**`{_$}`*The current LightQuery object* |
 
@@ -325,6 +329,36 @@ $('p').empty();
 ```js
 // Example
 $('p').eq(0);
+```
+
+---
+
+{:#filter}
+| **.filter(parameter)** *Filter elements from a selector or a function returning a `Boolean`* |
+|:---|
+| `parameter`*{String\|Function}* *A selector or a filtering function* |
+| **Returns**`{_$}`*The filtered LightQuery object* |
+
+```js
+// Examples
+$('p').filter('.red');
+$('p').filter(function(){
+	return $(this).hasClass('red');
+});
+$('p').filter(element => $(element).hasClass('red'));
+```
+
+---
+
+{:#find}
+| **.find(selector)** *Find the descendants of each element corresponding to the selector* |
+|:---|
+| `selector`*{String}* *The selector* |
+| **Returns**`{_$}`*The corresponding descendants' LightQuery object* |
+
+```js
+// Example
+$('p').find('span');
 ```
 
 ---
