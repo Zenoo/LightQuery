@@ -114,8 +114,19 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.is(target)**](#is) |
 
+| [**$.ajax(parameter[, settings])**](#ajax) |
+
+| [**$.get(url[, data, success, dataType])**](#sget) |
 
 | __NEW !__ [**$.insert(toInsert, position, relativeElements)**](#insert) |
+
+| [**.last()**](#last) |
+
+| [**.next([selector])**](#next) |
+
+| [**.nextAll([selector])**](#nextAll) |
+
+| [**.not(target)**](#not) |
 
 ### Methods not included
 
@@ -299,8 +310,8 @@ $('p').contents();
 $('p').css('color', 'red');
 $('p').css('color');
 $('p').css({
-	color: 'blue',
-	opacity: .5
+  color: 'blue',
+  opacity: .5
 });
 ```
 
@@ -327,7 +338,7 @@ const forLaterUse = $('p').detach();
 ```js
 // Example
 $('p').each(function(){
-	$(this).whatever(); // ...
+  $(this).whatever(); // ...
 });
 ```
 
@@ -368,7 +379,7 @@ $('p').eq(0);
 // Examples
 $('p').filter('.red');
 $('p').filter(function(){
-	return $(this).hasClass('red');
+  return $(this).hasClass('red');
 });
 $('p').filter(element => $(element).hasClass('red'));
 ```
@@ -475,9 +486,9 @@ $('p').hide();
 // Examples
 const html = $('p').html();
 $('p').html(`
-	<span>This</span>
-	is
-	<em>an example.</em>
+  <span>This</span>
+  is
+  <em>an example.</em>
 `);
 ```
 
@@ -533,9 +544,71 @@ $('p').insertBefore(section);
 // Examples
 $('p').is('.red');
 $('p').is(function(){
-	return $(this).hasClass('red');
+  return $(this).hasClass('red');
 });
 $('p').is(p => $(p).hasClass('red'));
+```
+
+---
+
+{:#ajax}
+| **$.ajax(parameter[, settings])** *Send an AJAX request* |
+|:---|
+| `parameter`*{String\|Object}* *URL of the request or settings object* |
+| `settings`*{Object}* *Settings object* |
+| `settings.data`*{Object\|FormData}* *Request data* |
+| `settings.dataType`*{String}* *Response data type* **Default:** `json`|
+| `settings.error`*{Function}* *Callback for the error event* |
+| `settings.headers`*{Object.&lt;String, String&gt;}* *Request headers* |
+| `settings.method`*{String}* *Request headers* **Default:** `GET`|
+| `settings.success`*{Function}* *Callback for the success event* |
+| `settings.url`*{String}* *Request URL* |
+| **Returns**`{XMLHttpRequest}`*The XMLHttpRequest* |
+
+```js
+// Examples
+$.ajax('https://whatev.er', {
+  data: {
+    example: 1,
+    test: 'Example'
+  },
+  dataType: 'text',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  method: 'POST',
+  success: response => {
+    console.log(response);
+  },
+  error: response => {
+    console.log(response);
+  }
+});
+$.ajax({
+  url: 'https://whatev.er',
+  ...
+});
+```
+
+---
+
+{:#sget}
+| **$.get(url[, data, success, dataType])** *Shorthand for sending a GET AJAX request* |
+|:---|
+| `url`*{String}* *URL of the request or settings object* |
+| `data`*{Object}* *Request data* |
+| `success`*{Function}* *Callback for the success event* |
+| `dataType`*{String}* *Response data type* |
+| **Returns**`{XMLHttpRequest}`*The XMLHttpRequest* |
+
+```js
+// Example
+$.get('https://whatev.er', {
+  example: 1,
+  test: 'Example'
+}, response => {
+  console.log(response);
+}, 'text');
 ```
 
 ---
@@ -549,8 +622,68 @@ $('p').is(p => $(p).hasClass('red'));
 | **Returns**`{_$}`*A new LightQuery object containing the inserted nodes* |
 
 ```js
+// Examples
+$.insert('p', 'before', 'aside');
+$.insert(element, 'start', 'aside');
+$.insert('p', 'end', elements);
+$.insert('p', 'after', 'aside');
+```
+
+---
+
+{:#last}
+| **.last()** *Get the last element* |
+|:---|
+| **Returns**`{_$}`*The last element's LightQuery object* |
+
+```js
 // Example
-const elementIndex = $('p').index();
+$('p').last();
+```
+
+---
+
+{:#next}
+| **.next([selector])** *Get next immediate sibling. If a selector is provided, doesn't return the sibling if it doesn't match* |
+|:---|
+| `selector`*{String}* *The sibling selector* |
+| **Returns**`{_$}`*The next immediate sibling's LightQuery object* |
+
+```js
+// Examples
+$('p').next();
+$('p').next('.red');
+```
+
+---
+
+{:#nextAll}
+| **.nextAll([selector])** *Get next siblings. If a selector is provided, doesn't return the siblings if they don't match* |
+|:---|
+| `selector`*{String}* *The sibling selector* |
+| **Returns**`{_$}`*The next siblings' LightQuery object* |
+
+```js
+// Examples
+$('p').nextAll();
+$('p').nextAll('.red');
+```
+
+---
+
+{:#not}
+| **.not(target)** *Remove elements matching the target from the current LightQuery object* |
+|:---|
+| `target`*{Element\|NodeList\|Array\|String\|Function\|_$}* *The target or a Function returning a `Boolean`* |
+| **Returns**`{_$}`*LightQuery Object containing the elements not matching the target* |
+
+```js
+// Examples
+$('p').not('.blue');
+$('p').not(function(){
+	return !$(this).hasClass('blue');
+});
+$('p').not(p => !$(p).hasClass('blue'));
 ```
 
 ---
