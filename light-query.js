@@ -515,22 +515,12 @@ class _$ extends Array{
 	}
 
 	/**
-	 * Insert each element after the target
-	 * @param   {String|Element|_$|Element[]} target The target
+	 * Insert each element after the target(s)
+	 * @param   {String|Element|_$|Element[]} target The target(s)
 	 * @returns {_$}                                 The current object
 	 */
 	insertAfter(target){
-		const targets = [];
-
-		if(target instanceof _$ || target instanceof Array){
-			targets.push(...target);
-		}else if(target instanceof Element){
-			targets.push(target);
-		}else{
-			targets.push(...document.querySelectorAll(target));
-		}
-
-		targets.forEach(currentTarget => {
+		_$._STD(target).forEach(currentTarget => {
 			let previousElement = currentTarget;
 
 			this.forEach(item => {

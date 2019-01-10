@@ -106,6 +106,10 @@ The full API documentation is available on [https://zenoo.github.io/LightQuery/d
 
 | [**.html([html])**](#html) |
 
+| [**.index()**](#index) |
+
+| [**.insertAfter(target)**](#insertAfter) |
+
 ### Methods not included
 
 ### In-depth method definition
@@ -468,6 +472,31 @@ $('p').html(`
 	is
 	<em>an example.</em>
 `);
+```
+
+---
+
+{:#index}
+| **.index()** *Get the first element's index in relation to its siblings* |
+|:---|
+| **Returns**`{_$}`*The index* |
+
+```js
+// Example
+const elementIndex = $('p').index();
+```
+
+---
+
+{:#insertAfter}
+| **.insertAfter(target)** *Get the first element's index in relation to its siblings* |
+|:---|
+| `html`*{String}* *The HTML to set* |
+| **Returns**`{_$}`*The index* |
+
+```js
+// Example
+const elementIndex = $('p').index();
 ```
 
 ---
