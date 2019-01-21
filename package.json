@@ -1,6 +1,6 @@
 {
   "name": "@zenoo/light-query",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A lightweight jQuery alternative",
   "main": "light-query.js",
   "scripts": {
