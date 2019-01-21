@@ -86,8 +86,8 @@ const __$_default_display_inline__ = [ // eslint-disable-line camelcase
 class _$ extends Array{
 	/**
 	 * 
-	 * @param {Element|NodeList|Array|String|Function|_$} parameter The parameter to initialize the _$ object with
-	 * @param {Element}                                   [context] Potential query context
+	 * @param {Element|NodeList|Array|String|Document|Window|Function|_$} parameter The parameter to initialize the _$ object with
+	 * @param {Element}                                                   [context] Potential query context
 	 */
 	constructor(parameter, context){
 		super();
@@ -482,7 +482,7 @@ class _$ extends Array{
 	 * @returns {Number} The computed height of the first element (px)
 	 */
 	height(){
-		return this.length ? this[0].clientHeight : null;
+		return this.length ? this[0] instanceof Document || this[0] instanceof Window ? document.documentElement.clientHeight : this[0].clientHeight : null;
 	}
 
 	/**
@@ -990,7 +990,13 @@ class _$ extends Array{
 	scrollLeft(value){
 		// Get
 		if(isNaN(value)){
-			return this.length ? this[0] instanceof Document ? this[0].scrollingElement.scrollLeft : this[0].scrollLeft : null;
+			return this.length
+				? this[0] instanceof Document
+					? this[0].scrollingElement.scrollLeft
+					: this[0] instanceof Window
+						? this[0].document.scrollingElement.scrollLeft
+						: this[0].scrollLeft
+				: null;
 		}
 
 		// Set
@@ -1010,7 +1016,13 @@ class _$ extends Array{
 	scrollTop(value){
 		// Get
 		if(isNaN(value)){
-			return this.length ? this[0] instanceof Document ? this[0].scrollingElement.scrollTop : this[0].scrollTop : null;
+			return this.length
+				? this[0] instanceof Document
+					? this[0].scrollingElement.scrollTop
+					: this[0] instanceof Window
+						? this[0].document.scrollingElement.scrollTop
+						: this[0].scrollTop
+				: null;
 		}
 
 		// Set
@@ -1211,7 +1223,7 @@ class _$ extends Array{
 	 * @returns {Number} The computed width of the first element (px)
 	 */
 	width(){
-		return this.length ? this[0].clientWidth : null;
+		return this.length ? this[0] instanceof Document || this[0] instanceof Window ? document.documentElement.clientWidth : this[0].clientWidth : null;
 	}
 
 	/**
