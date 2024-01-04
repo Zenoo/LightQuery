@@ -41,7 +41,7 @@ $(function(){
 });
 ```
 
-* The `LightQuery` object extend the native `Array` object, so you can use all of its methods/properties.
+* The `LightQuery` object extends the native `Array` object, so you can use all of its methods/properties.
 
 ```js
 // Examples

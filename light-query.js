@@ -399,7 +399,7 @@ class _$ extends Array{
 	 * @returns {_$}           The Nth element's object
 	 */
 	eq(index){
-		return this.length ? new _$(this[index >= 0 ? index : this.length + index]) : null;
+		return this.length ? new _$(this[index >= 0 ? index : this.length + index]) : new _$([]);
 	}
 
 	/**
@@ -1119,7 +1119,7 @@ class _$ extends Array{
 	 */
 	text(value){
 		// Get
-		if(typeof value == 'undefined'){
+		if(typeof value === 'undefined'){
 			return this.reduce((acc, item) => acc += item.innerText || item.textContent, '');
 		}
 
