@@ -978,7 +978,7 @@ $('p').parent();
 ---
 
 {:#parents}
-| **.parent([selector])** *Get the ancestors of each element. If a selector is passed, filter those parents* |
+| **.parents([selector])** *Get the ancestors of each element. If a selector is passed, filter those parents* |
 |:---|
 | `selector`*{String}* *The parents selector* |
 | **Returns**`{_$}`*The parent(s)' LightQuery object* |
